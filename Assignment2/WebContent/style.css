@@ -1,0 +1,17 @@
+ul.movieList {
+    list-style-type: none;
+    font-size: x-large;
+    margin: 3px;
+    padding: 3px;
+    background: #BABACA;
+}
+
+ul.movieList li {
+    display: inline;
+    
+/*  background: #2323EE; */
+    text-shadow: 1px 1px #FAFADE;
+    margin-bottom: 2px;
+    padding: 1px 0 1px 0;
+    color: white;
+}
