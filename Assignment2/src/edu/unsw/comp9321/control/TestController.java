@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,7 @@ import edu.unsw.comp9321.model.Movie;
 /**
  * Servlet implementation class Controller
  */
-@WebServlet({ "/Controller", "/control", "/" })
+@WebServlet({ "/Controller", "/control"})
 public class TestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static Logger logger = Logger.getLogger(TestController.class.getName());
@@ -42,9 +43,13 @@ public class TestController extends HttpServlet {
 		System.out.println("TESTANDO");
 		
 		try {
+
 			//movieDAO = new DerbyMovieDAO();
 			movieDAO = new HibernateMovieDAO();
 		} catch (ServiceLocatorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {

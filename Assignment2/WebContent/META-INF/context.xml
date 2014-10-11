@@ -5,4 +5,13 @@
           driverClassName="org.apache.derby.jdbc.ClientDriver" 
           url="jdbc:derby://localhost:1527/movieWebsite"
           maxActive="8" maxIdle="4"/>
+        
+  <Resource name="hibernate/cs9321"  
+             auth="Container"  
+             type="org.hibernate.SessionFactory"  
+             factory="edu.unsw.comp9321.jdbc.HibernateSessionFactory"
+             configuration="hibernate.cfg.xml"/>  
+             
 </Context>
+
+

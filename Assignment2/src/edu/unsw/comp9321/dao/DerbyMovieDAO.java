@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.naming.NamingException;
+
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.jdbc.DBConnectionFactory;
 import edu.unsw.comp9321.model.Movie;
@@ -16,7 +18,7 @@ public class DerbyMovieDAO implements MovieDAO {
 	static Logger logger = Logger.getLogger(DerbyMovieDAO.class.getName());
 	private Connection connection;
 	
-	public DerbyMovieDAO() throws ServiceLocatorException, SQLException{
+	public DerbyMovieDAO() throws ServiceLocatorException, SQLException, NamingException{
 		connection = DBConnectionFactory.getConnection();
 		logger.info("Got connection");	
 	}
