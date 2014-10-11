@@ -1,7 +1,6 @@
 package edu.unsw.comp9321.control;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,6 @@ import edu.unsw.comp9321.dao.HibernateMovieDAO;
 import edu.unsw.comp9321.dao.MovieDAO;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.model.Cinema;
-import edu.unsw.comp9321.model.Movie;
 
 public class CreateCinemaCommand implements Command {
 
@@ -42,14 +40,6 @@ public class CreateCinemaCommand implements Command {
 			dao = new HibernateMovieDAO();
 			dao.createCinema(cinema);
 			
-			List<Cinema> cinemas = dao.getCinemaList();
-			if (cinemas == null)
-				System.out.println("VAZIA");
-			else{
-				for (Cinema dcinema: cinemas){
-					System.out.println(dcinema.getLocation());
-				}			
-			}
 		} catch (ServiceLocatorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

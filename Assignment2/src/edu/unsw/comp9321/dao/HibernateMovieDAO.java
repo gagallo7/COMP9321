@@ -17,12 +17,9 @@ import edu.unsw.comp9321.model.Movie;
 
 public class HibernateMovieDAO implements MovieDAO {
 	static Logger logger = Logger.getLogger(DerbyMovieDAO.class.getName());
-	//private static SessionFactory sessionFactory;
 	private Session session;
 	
 	public HibernateMovieDAO() throws ServiceLocatorException, SQLException, NamingException{
-		//sessionFactory = new Configuration().configure().buildSessionFactory();
-		//session = sessionFactory.openSession();
 		session = HibernateSessionFactory.getSession();		
 		logger.info("Got connection");	
 	}
@@ -33,12 +30,16 @@ public class HibernateMovieDAO implements MovieDAO {
 		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
 		movieList = criteria.list();
+		session.close();
 		return movieList;
 	}
 
 	@Override
 	public void createCinema(Cinema cinema) {
+		session.beginTransaction();
 		session.save(cinema);
+		session.getTransaction().commit();
+		session.close();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -47,6 +48,7 @@ public class HibernateMovieDAO implements MovieDAO {
 		List<Cinema> cinemaList = new ArrayList<Cinema>();
 		Criteria criteria = session.createCriteria(Cinema.class);
 		cinemaList = criteria.list();
+		session.close();
 		return cinemaList;
 	}
 

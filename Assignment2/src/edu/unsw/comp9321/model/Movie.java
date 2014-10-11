@@ -9,7 +9,7 @@ public class Movie implements Serializable{
 		
 	}
 	
-	public Movie(int id, String title, int ageRating, int rating) {
+	public Movie(long id, String title, int ageRating, int rating) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -17,16 +17,16 @@ public class Movie implements Serializable{
 		this.rating = rating;
 	}
 	
-	private int id;
+	private long id;
 	private String title;
 	private int ageRating;
 	private int rating;
 	 
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getTitle() {

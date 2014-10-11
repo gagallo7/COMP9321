@@ -6,7 +6,7 @@
 <hibernate-mapping>
     <class name="edu.unsw.comp9321.model.Cinema" table="CINEMA">
         <id name="id" column="ID">
-            <generator class="increment" />
+            <generator class="native" />
         </id>
         <property name="location" type="java.lang.String">
             <column name="LOCATION" />

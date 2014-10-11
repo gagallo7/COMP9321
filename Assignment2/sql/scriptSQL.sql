@@ -5,11 +5,23 @@ CREATE TABLE MOVIE (
 	RATING INTEGER
 );
 
+    create table CINEMA (
+        ID bigint NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+        LOCATION varchar(255),
+        SEATINGCAPACITY integer,
+        ATM integer default 0,
+        WIDESCREEN integer default 0,
+        SNACKBAR integer default 0,
+        RESTAURANT integer default 0,
+        primary key (ID)
+    ); 
+
+INSERT INTO  CINEMA(LOCATION, SEATINGCAPACITY,ATM,WIDESCREEN,SNACKBAR,RESTAURANT) VALUES ('SYDNEY', 20, 0, 1, 0, 1); 
 INSERT INTO  MOVIE VALUES (1, 'Piratas do Caribe', 18, 8);
 INSERT INTO  MOVIE VALUES (2, 'Harry Potter', 14, 9);
 
 SELECT TITLE FROM MOVIE;
-SELECT LOCATION FROM CINEMA;
+SELECT * FROM CINEMA;
 
 DROP TABLE CINEMA;
 DROP TABLE MOVIE;

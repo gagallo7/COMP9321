@@ -13,6 +13,13 @@ public class Cinema implements Serializable {
 	private int snackBar;
 	private int restaurant;
 	 
+	public Cinema(){
+		ATM = 0;
+		widescreen = 0;
+		snackBar = 0;
+		restaurant = 0;
+	}
+	
 	public long getId() {
 		return id;
 	}

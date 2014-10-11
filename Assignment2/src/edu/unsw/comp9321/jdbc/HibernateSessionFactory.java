@@ -17,7 +17,7 @@ import edu.unsw.comp9321.exception.ServiceLocatorException;
 public class HibernateSessionFactory extends ServiceLocator implements ObjectFactory {
 	static Logger logger = Logger.getLogger(HibernateSessionFactory.class.getName());
 	
-	private static HibernateSessionFactory factory = null;
+	private static HibernateSessionFactory factory = null; //Singleton
 	private SessionFactory sf = null;
 	
 	public HibernateSessionFactory() throws ServiceLocatorException, NamingException {
