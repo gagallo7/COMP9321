@@ -19,26 +19,20 @@ import edu.unsw.comp9321.dao.MovieDAO;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.model.Movie;
 
-/**
- * Servlet implementation class Controller
- */
-@WebServlet({ "/Controller", "/control"})
+
+@WebServlet({ "/TestController"})
 public class TestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static Logger logger = Logger.getLogger(TestController.class.getName());
 	private MovieDAO movieDAO;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+ 
     public TestController() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("TESTANDO");
 		
@@ -56,7 +50,7 @@ public class TestController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		List<Movie> movies = movieDAO.getList();
+		List<Movie> movies = movieDAO.getMovieList();
 		if (movies == null)
 			System.out.println("VAZIA");
 		else{
@@ -70,9 +64,7 @@ public class TestController extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

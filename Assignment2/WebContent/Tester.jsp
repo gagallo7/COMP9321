@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<form action='control' method='GET'>
+		<form action='TestController' method='GET'>
 			<input type='submit' value='Go'/>
 		</form>
 </body>

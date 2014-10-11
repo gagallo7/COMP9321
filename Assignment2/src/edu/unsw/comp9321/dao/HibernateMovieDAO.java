@@ -12,6 +12,7 @@ import org.hibernate.Session;
 
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.jdbc.HibernateSessionFactory;
+import edu.unsw.comp9321.model.Cinema;
 import edu.unsw.comp9321.model.Movie;
 
 public class HibernateMovieDAO implements MovieDAO {
@@ -28,11 +29,16 @@ public class HibernateMovieDAO implements MovieDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Movie> getList() {
+	public List<Movie> getMovieList() {
 		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
 		movieList = criteria.list();
 		return movieList;
+	}
+
+	@Override
+	public void createCinema(Cinema cinema) {
+		session.save(cinema);		
 	}
 
 }

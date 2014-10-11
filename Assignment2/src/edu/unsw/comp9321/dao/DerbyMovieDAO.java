@@ -12,6 +12,7 @@ import javax.naming.NamingException;
 
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.jdbc.DBConnectionFactory;
+import edu.unsw.comp9321.model.Cinema;
 import edu.unsw.comp9321.model.Movie;
 
 public class DerbyMovieDAO implements MovieDAO {
@@ -24,7 +25,7 @@ public class DerbyMovieDAO implements MovieDAO {
 	}
 	
 	@Override
-	public List<Movie> getList() {
+	public List<Movie> getMovieList() {
 		// TODO Auto-generated method stub
 		ArrayList<Movie> movieList = new ArrayList<Movie>();
 		
@@ -52,6 +53,12 @@ public class DerbyMovieDAO implements MovieDAO {
 		}
 		
 		return movieList;
+	}
+
+	@Override
+	public void createCinema(Cinema cinema) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
