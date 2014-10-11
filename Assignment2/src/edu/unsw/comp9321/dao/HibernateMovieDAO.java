@@ -38,7 +38,16 @@ public class HibernateMovieDAO implements MovieDAO {
 
 	@Override
 	public void createCinema(Cinema cinema) {
-		session.save(cinema);		
+		session.save(cinema);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Cinema> getCinemaList() {
+		List<Cinema> cinemaList = new ArrayList<Cinema>();
+		Criteria criteria = session.createCriteria(Cinema.class);
+		cinemaList = criteria.list();
+		return cinemaList;
 	}
 
 }

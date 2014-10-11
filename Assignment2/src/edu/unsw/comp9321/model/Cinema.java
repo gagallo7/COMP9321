@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Cinema implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
+	private long id;
 	private String location;
 	private int seatingCapacity;
 	private int ATM;
@@ -13,10 +13,10 @@ public class Cinema implements Serializable {
 	private int snackBar;
 	private int restaurant;
 	 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getLocation() {

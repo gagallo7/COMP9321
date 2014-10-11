@@ -9,4 +9,6 @@ public interface MovieDAO {
 	public List<Movie> getMovieList();
 	
 	public void createCinema(Cinema cinema);
+
+	public List<Cinema> getCinemaList();
 }

@@ -5,9 +5,8 @@
 
 <hibernate-mapping>
     <class name="edu.unsw.comp9321.model.Cinema" table="CINEMA">
-        <id name="id" type="int">
-            <column name="ID" />
-            <generator class="assigned" />
+        <id name="id" column="ID">
+            <generator class="increment" />
         </id>
         <property name="location" type="java.lang.String">
             <column name="LOCATION" />
@@ -16,16 +15,16 @@
             <column name="SEATINGCAPACITY" />
         </property>
         <property name="ATM" type="int">
-            <column name="ATM" />
+            <column name="ATM" default="0"/>
         </property>
         <property name="widescreen" type="int">
-            <column name="WIDESCREEN" />
+            <column name="WIDESCREEN" default="0"/>
         </property>
         <property name="snackBar" type="int">
-            <column name="SNACKBAR" />
+            <column name="SNACKBAR" default="0"/>
         </property>
         <property name="restaurant" type="int">
-            <column name="RESTAURANT" />
+            <column name="RESTAURANT" default="0"/>
         </property>
     </class>
 </hibernate-mapping>

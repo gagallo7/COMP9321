@@ -61,6 +61,12 @@ public class DerbyMovieDAO implements MovieDAO {
 		
 	}
 
+	@Override
+	public List<Cinema> getCinemaList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

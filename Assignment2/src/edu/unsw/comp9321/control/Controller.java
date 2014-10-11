@@ -3,6 +3,7 @@ package edu.unsw.comp9321.control;
 import java.io.IOException;
 import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,9 +32,10 @@ public class Controller extends HttpServlet {
 	}
 
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String action = "createCinema";
-    	Command command = commands.get(action);
-    	command.execute(request, response);
+    	String actionParameter = request.getParameter("action");    	
+    	Actions action = Enum.valueOf(Actions.class, actionParameter);
+	    Command command = commands.get(action);
+	    command.execute(request, response);	
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
