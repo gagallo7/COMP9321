@@ -41,7 +41,7 @@ public class DerbyMovieDAO implements MovieDAO {
 				String title = res.getString("TITLE");
 				int age_rating = res.getInt("AGE_RATING");
 				int rating = res.getInt("RATING");
-				movieList.add(new Movie(id, title, age_rating, rating));
+				//movieList.add(new Movie(id, title, age_rating, rating));
 			}
 			
 			res.close();
@@ -65,6 +65,12 @@ public class DerbyMovieDAO implements MovieDAO {
 	public List<Cinema> getCinemaList() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void addMovie(Movie movie) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

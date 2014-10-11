@@ -1,8 +1,9 @@
 package edu.unsw.comp9321.control;
 
-import java.sql.SQLException;
+import java.io.IOException;
 
-import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,8 +15,7 @@ import edu.unsw.comp9321.model.Cinema;
 public class CreateCinemaCommand implements Command {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cinema cinema = new Cinema();
 		cinema.setLocation(request.getParameter("location"));
 		cinema.setSeatingCapacity((Integer.parseInt(request.getParameter("seatCap"))));
@@ -35,23 +35,14 @@ public class CreateCinemaCommand implements Command {
 			}
 		}
 
-		MovieDAO dao = null;
 		try {
-			dao = new HibernateMovieDAO();
+			MovieDAO dao = new HibernateMovieDAO();
 			dao.createCinema(cinema);
-			
 		} catch (ServiceLocatorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ServletException();
 		}
-		
-		//request.setAttribute("carList", carDAO.findAll());
-		//destinationPage = "/carList.jsp";
+
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/restricted/cinemas.jsp");
+		rd.forward(request, response);
 	}
 }

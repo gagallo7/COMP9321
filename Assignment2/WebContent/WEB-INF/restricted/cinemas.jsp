@@ -28,27 +28,19 @@
 		<table>
 			<tr>
 		   		<td align="right">Amenities: </td>
-				<td>
-					<input type="checkbox" name="amenities" value="atm">ATM 
-				</td>	
-			</tr>					
+				<td><input type="checkbox" name="amenities" value="atm">ATM </td>	
+			</tr>	
 			<tr>
 				<td></td>
-				<td>
-					<input type="checkbox" name="amenities" value="restaurant">Restaurant
-				</td>
+				<td><input type="checkbox" name="amenities" value="widescreen">Widescreen</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td>
-					<input type="checkbox" name="amenities" value="snack">Snack Bar
-				</td>
-			</tr>
+				<td><input type="checkbox" name="amenities" value="snack">Snack Bar</td>
+			</tr>				
 			<tr>
 				<td></td>
-				<td>
-					<input type="checkbox" name="amenities" value="widescreen">Widescreen
-				</td>
+				<td><input type="checkbox" name="amenities" value="restaurant">Restaurant</td>
 			</tr>
 		</table>
 		<br>
@@ -59,22 +51,22 @@
 
 	<!-- The  cinema  owner   can     add     movies  to  the     site    through    
 	 a   form    input   that    takes   the       -->
-	<!-- following    data:   Title,  Poster  (JPG/PNG),  
-	list    of  actors  and     actresses,  Genre(s)    
-	that    it belongs  to,     Director,   Short   Synopsis    (100    words),     
-	Age     rating.       -->
-
+	<!-- following    data:   Title,  Poster  (JPG/PNG),  list    of  actors  and     actresses,  Genre(s)    
+	that    it belongs  to,     Director,   Short   Synopsis    (100    words),     Age     rating.      
+	Romance, Horror, Thriller,Comedy, Drama, Biopic, Action.
+	 -->
+	<br>
 	<h2>Add movie</h2>
-	<form action="test" method="post">
+	<form action="control" method="post" enctype="multipart/form-data"> <!-- multipart/form-dat to be able to manipulate the image  -->
 		<p>
 			Title: <input type="text" name="title" required="required">
 		</p>
 		<p>
-			Poster: <input type="file" name="image" required="required">
+			Poster: <input type="file" name="image" required="required" accept="image/png,image/jpg">
 		</p>
 		<p>
 			Synopsis:
-			<textarea name="synopis" rows="5" cols="40" maxlength="1024"></textarea>
+			<textarea name="synopsis" rows="5" cols="40" maxlength="100"></textarea>
 		</p>
 		<p>
 			Director: <input type="text" name="director" required="required">
@@ -92,6 +84,39 @@
 				pattern="[0-3][0-9]/[0-1][0-9]/201[4-9]" required="required">
 		</p>
 
+		<table>
+			<tr>
+		   		<td align="right">Genre: </td>
+				<td><input type="radio" name="genre" value="romance">Romance</td>	
+			</tr>	
+			<tr>
+				<td></td>
+				<td><input type="radio" name="genre" value="horror">Horror</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="radio" name="genre" value="thriller">Thriller</td>
+			</tr>				
+			<tr>
+				<td></td>
+				<td><input type="radio" name="genre" value="comedy">Comedy</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="radio" name="genre" value="drama">Drama</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="radio" name="genre" value="biopic">Biopic</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="radio" name="genre" value="action">Action</td>
+			</tr>
+		</table>
+		<br>
+		
+		<input type="hidden" name="action" value="addMovie"/> 
 		<input type="submit" value="Add Movie">
 	</form>
 

@@ -10,6 +10,7 @@ public class Personality {
 	@GeneratedValue
 	private long personality_id;
 	private String name;
+	
 	public long getPersonality_id() {
 		return personality_id;
 	}

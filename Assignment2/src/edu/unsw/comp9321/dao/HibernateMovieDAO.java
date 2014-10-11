@@ -1,11 +1,8 @@
 package edu.unsw.comp9321.dao;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-import javax.naming.NamingException;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -19,9 +16,9 @@ public class HibernateMovieDAO implements MovieDAO {
 	static Logger logger = Logger.getLogger(DerbyMovieDAO.class.getName());
 	private Session session;
 	
-	public HibernateMovieDAO() throws ServiceLocatorException, SQLException, NamingException{
-		session = HibernateSessionFactory.getSession();		
-		logger.info("Got connection");	
+	public HibernateMovieDAO() throws ServiceLocatorException {
+		session = HibernateSessionFactory.getSession();
+		logger.info("Got connection");			
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -38,6 +35,14 @@ public class HibernateMovieDAO implements MovieDAO {
 	public void createCinema(Cinema cinema) {
 		session.beginTransaction();
 		session.save(cinema);
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	@Override
+	public void addMovie(Movie movie){
+		session.beginTransaction();
+		session.save(movie);
 		session.getTransaction().commit();
 		session.close();
 	}

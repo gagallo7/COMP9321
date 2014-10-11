@@ -16,7 +16,7 @@
   <property name="hibernate.use_sql_comments">true</property>
   <!-- Automatic schema creation -->
   <property name="hibernate.hbm2ddl.auto">update</property> 
-  <mapping resource="edu/unsw/comp9321/model/Model.hbm.xml"/>
+  <mapping resource="edu/unsw/comp9321/model/Movie.hbm.xml"/>
   <mapping resource="edu/unsw/comp9321/model/Cinema.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

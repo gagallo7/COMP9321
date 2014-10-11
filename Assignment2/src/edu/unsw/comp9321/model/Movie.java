@@ -1,27 +1,20 @@
 package edu.unsw.comp9321.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Movie implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	public Movie(){
-		
-	}
-	
-	public Movie(long id, String title, int ageRating, int rating) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.ageRating = ageRating;
-		this.rating = rating;
-	}
-	
 	private long id;
 	private String title;
+	private String urlPost;
+	private String genre;
+	private String Director;
+	private String synopsis;
 	private int ageRating;
 	private int rating;
-	 
+	private Date releaseDate;
 	
 	public long getId() {
 		return id;
@@ -35,6 +28,30 @@ public class Movie implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public String getUrlPost() {
+		return urlPost;
+	}
+	public void setUrlPost(String urlPost) {
+		this.urlPost = urlPost;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public String getDirector() {
+		return Director;
+	}
+	public void setDirector(String director) {
+		Director = director;
+	}
+	public String getSynopsis() {
+		return synopsis;
+	}
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
 	public int getAgeRating() {
 		return ageRating;
 	}
@@ -47,6 +64,14 @@ public class Movie implements Serializable{
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+	public Date getReleaseDate() {
+		return releaseDate;
+	}
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+	
+
 	
 	//Ctrl+3 generate
 }
