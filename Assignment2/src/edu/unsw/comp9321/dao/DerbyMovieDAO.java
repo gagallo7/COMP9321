@@ -8,21 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.naming.NamingException;
+
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.jdbc.DBConnectionFactory;
+import edu.unsw.comp9321.model.Cinema;
 import edu.unsw.comp9321.model.Movie;
 
 public class DerbyMovieDAO implements MovieDAO {
 	static Logger logger = Logger.getLogger(DerbyMovieDAO.class.getName());
 	private Connection connection;
 	
-	public DerbyMovieDAO() throws ServiceLocatorException, SQLException{
+	public DerbyMovieDAO() throws ServiceLocatorException, SQLException, NamingException{
 		connection = DBConnectionFactory.getConnection();
 		logger.info("Got connection");	
 	}
 	
 	@Override
-	public List<Movie> getList() {
+	public List<Movie> getMovieList() {
 		// TODO Auto-generated method stub
 		ArrayList<Movie> movieList = new ArrayList<Movie>();
 		
@@ -50,6 +53,12 @@ public class DerbyMovieDAO implements MovieDAO {
 		}
 		
 		return movieList;
+	}
+
+	@Override
+	public void createCinema(Cinema cinema) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
