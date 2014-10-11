@@ -8,7 +8,7 @@
 <title>Searching for Movies</title>
 </head>
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="/header.html"%>
 	
 	<h2>Showing 2 results</h2>
 

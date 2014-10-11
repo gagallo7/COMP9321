@@ -12,7 +12,7 @@ function capitaliseFirstLetter(string)
 }
 
 function checkLength(a, min, info) {
-	alert ( a.value.length + min + info.value );
+//	alert ( a.value.length + min + info.value );
 	if (a.value.length < min) {
 		info.innerHTML	 = capitaliseFirstLetter (a.name) + " has less than " + min + " characters";
 		return false;
