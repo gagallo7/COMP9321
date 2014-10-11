@@ -11,7 +11,7 @@
 </head>
 <body>
 	<strong id="info"></strong>
-
+	<%@ include file="/header.html"%>
 	<h1>Cinema Configuration</h1>
 
 	<h2>Add a cinema</h2>
@@ -50,8 +50,8 @@
 			Title: <input type="text" name="title" required="required">
 		</p>
 		<p>
-            Poster: <input type="file" name="title" required="required">
-        </p>
+			Poster: <input type="file" name="image" required="required">
+		</p>
 		<p>
 			Synopsis:
 			<textarea name="synopis" rows="5" cols="40" maxlength="1024"></textarea>
@@ -64,12 +64,13 @@
 				name="actors" required="required">
 		</p>
 		<p>
-			Age Rating: <input type="number" name="ageRating" value=12 min=0 
+			Age Rating: <input type="number" name="ageRating" value=12 min=0
 				max=30 required="required">
 		</p>
 		<p>
-            Release Date (DD/MM/YYYY): <input type="text" name="releaseDate" pattern="[0-3][0-9]/[0-1][0-9]/201[4-9]" required="required">
-        </p>
+			Release Date (DD/MM/YYYY): <input type="text" name="releaseDate"
+				pattern="[0-3][0-9]/[0-1][0-9]/201[4-9]" required="required">
+		</p>
 
 		<input type="submit" value="Add Movie">
 	</form>

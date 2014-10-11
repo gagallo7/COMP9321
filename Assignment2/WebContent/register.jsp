@@ -11,7 +11,7 @@
 
 </head>
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="/header.html"%>
 	
 	<h1>Registration</h1>
 	
@@ -22,7 +22,7 @@
 			Username: <input type="text" name="username"> <output style="position: absolute; color: gray;">4 or more characters</output>
 		</p>
 		<p>
-			Password: <input type="password" name="password" id="p"> <output style="position: absolute; color: gray;">4 or more characters</output>
+			Password: <input type="password" name="password" id="p" onblur="x.value=checkPass(p,rp);"> <output style="position: absolute; color: gray;">4 or more characters</output>
 		</p>
 		<p>
 			Repeat Password: <input onblur="x.value=checkPass(p,rp);"

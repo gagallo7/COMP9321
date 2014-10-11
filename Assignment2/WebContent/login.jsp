@@ -13,7 +13,7 @@
     <%@ include file="header.html"%>
     <strong id="info"></strong>
     
-    <form action="test" name="reg" method="post">
+    <form action="test" method="post">
         <p>
             Username: <input type="text" name="username" pattern="[a-z]...*" required="required">
         </p>
