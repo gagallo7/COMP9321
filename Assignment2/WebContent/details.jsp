@@ -10,6 +10,27 @@
 <body>
 	<%@ include file="header.html"%>
 
+	IF IS LOGGED AS "ADMIN" AND THE MOVING IS "NOW SHOWING"
+	<h2>Associate this movie with a cinema</h2>
+	<form action="test" method="post">
+	   <p>
+		Which cinema? <select name="cinema">
+			<option value="1">Cine 1</option>
+		</select>
+		</p>
+		<p>
+            Date (DD/MM/YYYY): <input type="text" name="showingDate" pattern="[0-3][0-9]/[0-1][0-9]/201[4-9]" required="required">
+        </p>
+        <p>
+            Time (HH:MM): <input type="text" name="showingTime" pattern="[0-2][0-9]:[0-5][0-9]" required="required">
+        </p>
+        <p>
+            <input type="submit" value="Create Session">
+        </p>
+	</form>
+
+
+
 	<h2>Butterfly Effect</h2>
 	<img class="large" alt="poster" src="img/movie1.jpg">
 	<div class="rating">☆☆☆☆☆</div>
@@ -18,10 +39,15 @@
 			<strong>Genre:</strong> Drama
 		</p>
 		<p>
+			<strong>Director:</strong> Chris na Lan
+		</p>
+		<p>
 			<strong>Actors:</strong> A., B. and C.
 		</p>
 		<p>
-			<a href="">More Details</a>
+			<strong>Synopsis:</strong> blablablabla blabla blabla blabla blabla
+			blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
+			blabla blabla blabla blabla blabla blabla blabla
 		</p>
 	</div>
 
@@ -41,7 +67,9 @@
 		<input type="submit" value="Book!">
 	</form>
 
-<br/><br/><br/>
+	<br />
+	<br />
+	<br />
 	<table>
 		<caption>Reviews</caption>
 		<thead>
