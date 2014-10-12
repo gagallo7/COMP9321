@@ -3,6 +3,8 @@
  */
 package edu.unsw.comp9321.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,7 +14,7 @@ import javax.persistence.Id;
  * many-to-many association for recommendations system
  * that's why it isn't an association many-to-one (many persons for one movie)
  */
-public class UserBooking {
+public class UserBooking implements Serializable{
 	private long userId;
 	private long bookingId;
 	public long getUserId() {

@@ -1,6 +1,10 @@
 package edu.unsw.comp9321.model;
 
-public class UserLogin {
+import java.io.Serializable;
+
+public class UserLogin implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private String username;
 	private String firstName;
 	private String lastName;

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import edu.unsw.comp9321.dao.HibernateMovieDAO;
 import edu.unsw.comp9321.dao.MovieDAO;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
+import edu.unsw.comp9321.model.CinemaSession;
 
 public class DetailMovieCommand implements Command {
 
@@ -23,6 +24,8 @@ public class DetailMovieCommand implements Command {
 			request.setAttribute("movie", dao.getMovie(id));
 			//get comments
 			request.setAttribute("cinemas", dao.getCinemaList());
+			request.setAttribute("sessions", dao.getMovieSessions(id));
+			dao.closeSession();
 		} catch (ServiceLocatorException e) {
 			e.printStackTrace();
 		}

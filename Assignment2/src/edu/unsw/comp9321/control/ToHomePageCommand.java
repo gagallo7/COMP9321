@@ -20,6 +20,7 @@ public class ToHomePageCommand implements Command {
 			dao = new HibernateMovieDAO();
 			request.setAttribute("nowShowingMovies", dao.getNowShowingMovies());
 			request.setAttribute("comingSoonMovies", dao.getComingSoonMovies());
+			dao.closeSession();
 		} catch (ServiceLocatorException e) {
 			e.printStackTrace();
 		}

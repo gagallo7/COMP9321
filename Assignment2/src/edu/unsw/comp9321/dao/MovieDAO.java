@@ -1,6 +1,7 @@
 package edu.unsw.comp9321.dao;
 
 import edu.unsw.comp9321.model.Cinema;
+import edu.unsw.comp9321.model.CinemaSession;
 import edu.unsw.comp9321.model.Movie;
 import edu.unsw.comp9321.model.UserLogin;
 
@@ -14,8 +15,14 @@ public interface MovieDAO {
 	public List<Movie> getComingSoonMovies();
 	public List<Movie> searchMovie(String title, String genre);
 	
-	public void createCinema(Cinema cinema);
+	public void addCinema(Cinema cinema);
+	public Cinema getCinema(Long id);
 	public List<Cinema> getCinemaList();
 	
+	public void addCinemaSession(CinemaSession cinemaSession);
+	public List<CinemaSession> getMovieSessions(Long movieID);
+	
 	public void registerUser(UserLogin user);
+	
+	public void closeSession();
 }

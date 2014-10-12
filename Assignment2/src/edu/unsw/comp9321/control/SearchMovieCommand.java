@@ -25,6 +25,7 @@ public class SearchMovieCommand implements Command {
 		try {
 			MovieDAO dao = new HibernateMovieDAO();
 			request.setAttribute("movies", dao.searchMovie(title, genre));
+			dao.closeSession();
 		} catch (ServiceLocatorException e) {
 			e.printStackTrace();
 		}

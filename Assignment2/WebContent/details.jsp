@@ -14,23 +14,25 @@
 
 	<c:if test="${UserRole eq 'manager'}">
 		<h2>Associate this movie with a cinema</h2>
-		<form action="test" method="post">
+		<form action="control" method="post">
 			<p>
-				Which cinema? <select name="cinema">
+				Which cinema? <select name="cinemaId">
 					<c:forEach var="cinema" items="${cinemas}">
 						<option value="${cinema.id}">${cinema.location}</option>
 					</c:forEach>
 				</select>
 			</p>
 			<p>
-				Date (DD/MM/YYYY): <input type="text" name="showingDate"
+				Date (DD/MM/YYYY): <input type="text" name="showDate"
 					pattern="[0-3][0-9]/[0-1][0-9]/201[4-9]" required="required">
 			</p>
 			<p>
-				Time (HH:MM): <input type="text" name="showingTime"
+				Time (HH:MM): <input type="text" name="showTime"
 					pattern="[0-2][0-9]:[0-5][0-9]" required="required">
 			</p>
 			<p>
+				<input type="hidden" name="movieId" value="${movie.id}"/> 
+				<input type="hidden" name="action" value="addCinemaSession"/> 
 				<input type="submit" value="Create Session">
 			</p>
 		</form>
@@ -57,6 +59,16 @@
 		<p>
 			<strong>Synopsis:</strong> ${movie.synopsis}
 		</p>
+		<p>
+			<strong>Sessions:</strong> 
+		</p>
+			<table>
+				<c:forEach var="session" items="${sessions}">
+					<tr>
+						<td>Cinema Location</td><td>${session.showTime}</td>
+					</tr>
+				</c:forEach>
+			</table>
 	</div>
 
 	<c:if test="${UserRole eq 'user'}">

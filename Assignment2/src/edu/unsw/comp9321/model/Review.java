@@ -1,6 +1,8 @@
 package edu.unsw.comp9321.model;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable{
 //TODO
 	private long movieId;
 	private String username;

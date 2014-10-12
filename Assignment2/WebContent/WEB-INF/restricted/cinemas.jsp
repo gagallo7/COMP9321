@@ -45,7 +45,7 @@
 				<td><input type="checkbox" name="amenities" value="restaurant">Restaurant</td>
 			</tr>
 		</table>
-		<br> <input type="hidden" name="action" value="createCinema" /> <input
+		<br> <input type="hidden" name="action" value="addCinema" /> <input
 			type="submit" value="Add cinema">
 	</form>
 

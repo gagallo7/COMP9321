@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-
 import edu.unsw.comp9321.dao.HibernateMovieDAO;
 import edu.unsw.comp9321.dao.MovieDAO;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
@@ -78,7 +77,7 @@ public class AddMovieCommand implements Command {
 		try {
 			MovieDAO dao = new HibernateMovieDAO();
 			dao.addMovie(movie);
-
+			dao.closeSession();
 		} catch (ServiceLocatorException e) {
 			e.printStackTrace();
 		}

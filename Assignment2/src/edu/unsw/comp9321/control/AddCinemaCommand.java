@@ -12,7 +12,7 @@ import edu.unsw.comp9321.dao.MovieDAO;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.model.Cinema;
 
-public class CreateCinemaCommand implements Command {
+public class AddCinemaCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +37,8 @@ public class CreateCinemaCommand implements Command {
 
 		try {
 			MovieDAO dao = new HibernateMovieDAO();
-			dao.createCinema(cinema);
+			dao.addCinema(cinema);
+			dao.closeSession();
 		} catch (ServiceLocatorException e) {
 			throw new ServletException();
 		}

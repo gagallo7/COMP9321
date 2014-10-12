@@ -3,6 +3,8 @@
  */
 package edu.unsw.comp9321.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,7 +15,7 @@ import javax.persistence.Id;
  * that's why it isn't an association many-to-one (many persons for one movie)
  */
 @Entity
-public class MoviePersonality {
+public class MoviePersonality implements Serializable{
 	@Id
 	private long movieId;
 	@Id

@@ -31,7 +31,7 @@ public class RegisterUserCommand implements Command {
 		try {
 			MovieDAO dao = new HibernateMovieDAO();
 			dao.registerUser(user);
-			
+			dao.closeSession();
 			/*
 		      // Recipient's email ID needs to be mentioned.
 		      String to = "abcd@gmail.com";

@@ -14,6 +14,7 @@ import org.hibernate.criterion.Restrictions;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.jdbc.HibernateSessionFactory;
 import edu.unsw.comp9321.model.Cinema;
+import edu.unsw.comp9321.model.CinemaSession;
 import edu.unsw.comp9321.model.Movie;
 import edu.unsw.comp9321.model.UserLogin;
 
@@ -31,7 +32,6 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.beginTransaction();
 		session.save(movie);
 		session.getTransaction().commit();
-		session.close();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -41,8 +41,6 @@ public class HibernateMovieDAO implements MovieDAO {
 		Criteria criteria = session.createCriteria(Movie.class);
 		criteria.add(Restrictions.eq("id",id));
 		movieList = criteria.list();
-		for (Movie m: movieList)
-			System.out.println(m.getTitle());
 		return movieList.get(0);
 	}
 	
@@ -52,7 +50,6 @@ public class HibernateMovieDAO implements MovieDAO {
 		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
 		movieList = criteria.list();
-		session.close();
 		return movieList;
 	}
 	
@@ -77,7 +74,6 @@ public class HibernateMovieDAO implements MovieDAO {
 		criteria.addOrder(Order.asc("releaseDate"));
 		criteria.setMaxResults(3);
 		movieList = criteria.list();
-		session.close();
 		return movieList;
 	}
 	
@@ -97,16 +93,24 @@ public class HibernateMovieDAO implements MovieDAO {
 		}		
 		
 		movieList = criteria.list();
-		session.close();
 		return movieList;
 	}
 
 	@Override
-	public void createCinema(Cinema cinema) {
+	public void addCinema(Cinema cinema) {
 		session.beginTransaction();
 		session.save(cinema);
 		session.getTransaction().commit();
-		session.close();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Cinema getCinema(Long id) {
+		List<Cinema> cinemaList = new ArrayList<Cinema>();
+		Criteria criteria = session.createCriteria(Cinema.class);
+		criteria.add(Restrictions.eq("id",id));
+		cinemaList = criteria.list();
+		return cinemaList.get(0);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -115,16 +119,37 @@ public class HibernateMovieDAO implements MovieDAO {
 		List<Cinema> cinemaList = new ArrayList<Cinema>();
 		Criteria criteria = session.createCriteria(Cinema.class);
 		cinemaList = criteria.list();
-		session.close();
 		return cinemaList;
 	}
+	
+	@Override
+	public void addCinemaSession(CinemaSession cinemaSession){
+		session.beginTransaction();
+		session.save(cinemaSession);
+		session.getTransaction().commit();
+	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CinemaSession> getMovieSessions(Long movieID) {
+		List<CinemaSession> cinemaSessionList = new ArrayList<CinemaSession>();
+		Criteria criteria = session.createCriteria(CinemaSession.class);
+		criteria.add(Restrictions.eq("movieId", movieID));
+		cinemaSessionList = criteria.list();
+		return cinemaSessionList;
+	}
+	
 	@Override
 	public void registerUser(UserLogin user) {
 		session.beginTransaction();
 		session.save(user);
-		session.getTransaction().commit();
-		session.close();		
+		session.getTransaction().commit();		
 	}
+	
+	public void closeSession(){
+		session.close();
+	}
+
+
 
 }

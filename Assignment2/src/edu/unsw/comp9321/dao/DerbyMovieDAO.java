@@ -13,6 +13,7 @@ import javax.naming.NamingException;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.jdbc.DBConnectionFactory;
 import edu.unsw.comp9321.model.Cinema;
+import edu.unsw.comp9321.model.CinemaSession;
 import edu.unsw.comp9321.model.Movie;
 import edu.unsw.comp9321.model.UserLogin;
 
@@ -56,11 +57,6 @@ public class DerbyMovieDAO implements MovieDAO {
 		return movieList;
 	}
 
-	@Override
-	public void createCinema(Cinema cinema) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public List<Cinema> getCinemaList() {
@@ -100,6 +96,36 @@ public class DerbyMovieDAO implements MovieDAO {
 
 	@Override
 	public Movie getMovie(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Cinema getCinema(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addCinema(Cinema cinema) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addCinemaSession(CinemaSession session) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void closeSession() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<CinemaSession> getMovieSessions(Long movieID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
