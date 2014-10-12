@@ -9,25 +9,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoginCommand implements Command {
+public class ToPageCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String username = request.getParameter("username");
-		
-		logger.info("Username = " + username);
-		if (username != null) {
-			HttpSession session = request.getSession();
-			if (username.equals("admin")) {
-				session.setAttribute("UserRole", "manager");
-			} else {
-				session.setAttribute("UserRole", "user");
+		String nextPage = "home.jsp";
+
+		HttpSession session = request.getSession();
+
+		if (session.getAttribute("UserRole") != null) {
+			if (request.getParameter("page") != null) {
+				nextPage = "WEB-INF/restricted/" + request.getParameter("page")
+						+ ".jsp";
 			}
-			session.setAttribute("username", username);
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/" + nextPage);
 		rd.forward(request, response);
 
 	}
