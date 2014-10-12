@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +18,14 @@ import org.jboss.logging.Logger;
 
 import com.sun.xml.internal.bind.CycleRecoverable.Context;
 
+import edu.unsw.comp9321.control.AddMovieCommand;
+import edu.unsw.comp9321.control.Command;
+
 /**
  * Servlet implementation class test
  */
 @WebServlet("/test")
+@MultipartConfig// expects requests to made using the multipart/form-data - read file-image
 public class test extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -65,6 +70,12 @@ public class test extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		Logger logger = Logger.getLogger(this.getClass().getName());
+		
+		request.setAttribute("path", getServletContext().getRealPath("/"));
+		
+		Command command =new AddMovieCommand();
+	    command.execute(request, response);	
+		
 
 		String username = request.getParameter("username");
 		logger.info("Username = " + username);

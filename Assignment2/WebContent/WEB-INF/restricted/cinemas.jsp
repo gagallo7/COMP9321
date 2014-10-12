@@ -16,7 +16,7 @@
 
 	<h2>Add a cinema</h2>
 
-	<form action="control" method="post">
+	<form action="control"  method="post">
 		<p>
 			Location: <input type="text" name="location" required="required">
 		</p>
@@ -62,7 +62,8 @@
 			Title: <input type="text" name="title" required="required">
 		</p>
 		<p>
-			Poster: <input type="file" name="image" required="required" accept="image/png,image/jpg">
+			Poster: <input type="file" name="upfile" required="required" >
+<!-- 			accept="image/png,image/jpg" -->
 		</p>
 		<p>
 			Synopsis:
