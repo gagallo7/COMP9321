@@ -16,7 +16,6 @@ public class LoginCommand implements Command {
 			throws ServletException, IOException {
 		
 		String username = request.getParameter("username");
-		System.out.println("AQUIIII");
 		logger.info("Username = " + username);
 		if (username != null) {
 			HttpSession session = request.getSession();
