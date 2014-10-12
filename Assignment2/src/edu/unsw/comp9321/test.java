@@ -65,7 +65,6 @@ public class test extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		Logger logger = Logger.getLogger(this.getClass().getName());
-		ServletContext context = request.getServletContext();
 
 		String username = request.getParameter("username");
 		logger.info("Username = " + username);
