@@ -28,7 +28,7 @@
 		</c:if>
 		
 		<c:if test="${UserRole eq 'manager'}">
-            <li><a href="details.jsp">Cinemas and Movies</a></li>
+            <li><a href="control?action=toPage&page=cinemas">Cinemas and Movies</a></li>
         </c:if>
 	</ul>
 
