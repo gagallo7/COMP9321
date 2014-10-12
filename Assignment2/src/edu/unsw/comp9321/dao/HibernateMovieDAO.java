@@ -57,7 +57,7 @@ public class HibernateMovieDAO implements MovieDAO {
 		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
 		criteria.add(Restrictions.le("releaseDate", Calendar.getInstance().getTime())); //less or equal to
-		criteria.addOrder(Order.desc("ageRating"));
+		criteria.addOrder(Order.desc("rating"));
 		criteria.setMaxResults(3);
 		movieList = criteria.list();
 		return movieList;
