@@ -21,6 +21,8 @@ public class DetailMovieCommand implements Command {
 		try {
 			MovieDAO dao = new HibernateMovieDAO();
 			request.setAttribute("movie", dao.getMovie(id));
+			//get comments
+			request.setAttribute("cinemas", dao.getCinemaList());
 		} catch (ServiceLocatorException e) {
 			e.printStackTrace();
 		}

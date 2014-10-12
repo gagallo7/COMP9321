@@ -17,7 +17,9 @@
 		<form action="test" method="post">
 			<p>
 				Which cinema? <select name="cinema">
-					<option value="1">Cine 1</option>
+					<c:forEach var="cinema" items="${cinemas}">
+						<option value="${cinema.id}">${cinema.location}</option>
+					</c:forEach>
 				</select>
 			</p>
 			<p>

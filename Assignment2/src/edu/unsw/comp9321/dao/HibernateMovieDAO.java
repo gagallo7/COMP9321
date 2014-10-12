@@ -36,7 +36,7 @@ public class HibernateMovieDAO implements MovieDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public Movie getMovie(long id) {
+	public Movie getMovie(long id) { //session close at getCinemaList
 		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
 		criteria.add(Restrictions.eq("id",id));
@@ -58,7 +58,7 @@ public class HibernateMovieDAO implements MovieDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Movie> getNowShowingMovies() {
+	public List<Movie> getNowShowingMovies() { //session close at getComingSoonMovies
 		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
 		criteria.add(Restrictions.le("releaseDate", Calendar.getInstance().getTime())); //less or equal to

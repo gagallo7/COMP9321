@@ -8,25 +8,14 @@ import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Logger;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
-import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import edu.unsw.comp9321.dao.HibernateMovieDAO;
 import edu.unsw.comp9321.dao.MovieDAO;
@@ -34,9 +23,6 @@ import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.model.Movie;
 
 public class AddMovieCommand implements Command {
-	private static final String DATA_DIRECTORY = "img";
-	private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
-	private static final int MAX_REQUEST_SIZE = 1024 * 1024;
 
 	private static String getFilename(Part part) {
 	    for (String cd : part.getHeader("content-disposition").split(";")) {
@@ -66,7 +52,8 @@ public class AddMovieCommand implements Command {
 	    logger.info("File " + fileName + " created at " + filePath);
 	    OutputStream outStream = new FileOutputStream(targetFile);
 	    outStream.write(buffer);
-
+	    outStream.close();
+	    
 		Movie movie = new Movie();
 
 		movie.setTitle(request.getParameter("title"));
