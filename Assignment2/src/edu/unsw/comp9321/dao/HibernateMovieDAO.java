@@ -34,6 +34,13 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.close();
 	}
 	
+	@Override
+	public Movie getMovie(long id) {
+		Movie movie = null;
+		Criteria criteria = session.createCriteria(Movie.class);
+		return movie;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movie> getMovieList() {
@@ -114,6 +121,5 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.getTransaction().commit();
 		session.close();		
 	}
-
 
 }

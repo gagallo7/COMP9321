@@ -21,7 +21,7 @@ public class Controller extends HttpServlet {
     static Logger logger = Logger.getLogger(Controller.class.getName());
     
     private HashMap<Actions, Command> commands;
-    private enum Actions {toHomePage, toPage, login, registerUser, confirmUser, searchMovie, createCinema, addMovie, addShowtime};
+    private enum Actions {toHomePage, toPage, login, registerUser, confirmUser, searchMovie, createCinema, addMovie, addShowtime, detailMovie};
     
     public Controller() {
         super();   
@@ -30,15 +30,16 @@ public class Controller extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
     	logger.info("Control Servlet init");
     	commands = new HashMap<Actions, Command>();
-    	commands.put(Actions.toHomePage, new ToHomePageCommand());
-    	commands.put(Actions.toPage, new ToPageCommand());
-    	commands.put(Actions.login, new LoginCommand());
-    	commands.put(Actions.registerUser, new RegisterUserCommand());
-    	commands.put(Actions.confirmUser, new ConfirmUserCommand());
-    	commands.put(Actions.searchMovie, new SearchMovieCommand());
-    	commands.put(Actions.createCinema, new CreateCinemaCommand());
-    	commands.put(Actions.addMovie, new AddMovieCommand());
-    	commands.put(Actions.addShowtime, new ToPageCommand());
+    	commands.put(Actions.toHomePage, 	new ToHomePageCommand());
+    	commands.put(Actions.toPage, 		new ToPageCommand());
+    	commands.put(Actions.login, 		new LoginCommand());
+    	commands.put(Actions.registerUser, 	new RegisterUserCommand());
+    	commands.put(Actions.confirmUser, 	new ConfirmUserCommand());
+    	commands.put(Actions.searchMovie, 	new SearchMovieCommand());
+    	commands.put(Actions.createCinema, 	new CreateCinemaCommand());
+    	commands.put(Actions.addMovie, 		new AddMovieCommand());
+    	commands.put(Actions.addShowtime, 	new ToPageCommand());
+    	commands.put(Actions.detailMovie, 	new DetailMovieCommand());
 	}
 
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

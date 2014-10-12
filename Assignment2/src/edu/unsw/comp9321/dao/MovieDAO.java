@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface MovieDAO {
 	public void addMovie(Movie movie);
+	public Movie getMovie(long id);
 	public List<Movie> getMovieList();
 	public List<Movie> getNowShowingMovies();
 	public List<Movie> getComingSoonMovies();

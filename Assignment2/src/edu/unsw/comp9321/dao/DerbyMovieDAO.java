@@ -98,6 +98,12 @@ public class DerbyMovieDAO implements MovieDAO {
 		return null;
 	}
 
+	@Override
+	public Movie getMovie(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }

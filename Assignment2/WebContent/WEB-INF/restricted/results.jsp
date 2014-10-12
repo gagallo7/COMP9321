@@ -35,7 +35,13 @@
 					<strong>Actors:</strong> A., B. and C.
 				</p>
 				<p>
-					<a href="">More Details</a>
+					<c:if test="${UserRole eq 'user'}">
+						<a href="?action=detailMovie">More Details</a>
+					</c:if>
+		
+					<c:if test="${UserRole eq 'manager'}">
+			            <li><a href="?action=detailMovie">Set Cinemas and Showtimes</a></li>
+			        </c:if>
 				</p>
 			</div>
 		</div>
