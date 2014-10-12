@@ -21,7 +21,7 @@ public class Controller extends HttpServlet {
     static Logger logger = Logger.getLogger(Controller.class.getName());
     
     private HashMap<Actions, Command> commands;
-    private enum Actions {createCinema, addMovie};
+    private enum Actions {toHomePage, createCinema, addMovie};
     
     public Controller() {
         super();   
@@ -30,15 +30,21 @@ public class Controller extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
     	logger.info("Control Servlet init");
     	commands = new HashMap<Actions, Command>();
+    	commands.put(Actions.toHomePage, new ToHomePageCommand());
     	commands.put(Actions.createCinema, new CreateCinemaCommand());
     	commands.put(Actions.addMovie, new AddMovieCommand());
 	}
 
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String actionParameter = request.getParameter("action");    	
-    	System.out.println(actionParameter);
-    	Actions action = Enum.valueOf(Actions.class, actionParameter);
-	    Command command = commands.get(action);
+    	String actionParameter = request.getParameter("action"); 
+    	Actions action;
+    	
+    	if (actionParameter == null)
+    		action = Actions.toHomePage;
+    	else
+    		action = Enum.valueOf(Actions.class, actionParameter);
+	    
+    	Command command = commands.get(action);
 	    command.execute(request, response);	
     }
 
