@@ -18,7 +18,7 @@
 	<c:forEach var="movie" items="${movies}">
 		<div class="result">
 			<div class="movie2">
-				<a href="details.jsp"><img class="mini" alt="poster" src="img/movie1.jpg"></a>
+				<a href="details.jsp"><img class="mini" alt="poster" src="img/${movie.urlPost}"></a>
 				<br> <a href="details.jsp">${movie.title}</a>
 				<div class="rating2">
 					<c:forEach begin="1" end="${movie.rating}">

@@ -61,7 +61,6 @@
 		</li>
 	</ul>
 
-
 	<h2 class="highlight">Coming Soon</h2>
 	ORDER BY RELEASE DATE
 	<ul class="movieList">
@@ -71,7 +70,7 @@
 					<c:forEach var="movie" items="${comingSoonMovies}">
 						<div class="movie">
 							<a href=""><img class="mini" alt="poster"
-								src="${pageContext.request.contextPath}/img/movie1.jpg"></a>
+								src="${pageContext.request.contextPath}/img/${movie.urlPost}"></a>
 							<p>
 								<a href="">${movie.title}</a>
 							</p>
