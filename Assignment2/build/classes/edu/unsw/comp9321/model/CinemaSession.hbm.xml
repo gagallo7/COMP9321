@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 11, 2014 11:40:12 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="edu.unsw.comp9321.model.Cinema">
+		<id name="id" column="cinemaId">
+			<generator class="native" />
+		</id>
+		<set name="sessions" table="CinemaSession">
+			<key column="cinemaId" />
+			<many-to-many column="sessionId" unique="true"
+				class="edu.unsw.comp9321.model.Session" />
+		</set>
+	</class>
+
+	<class name="edu.unsw.comp9321.model.Session">
+		<id name="id" column="sessionId">
+			<generator class="native" />
+		</id>
+	</class>
+</hibernate-mapping>

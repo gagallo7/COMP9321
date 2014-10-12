@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 11, 2014 11:09:36 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="edu.unsw.comp9321.model.User">
+		<id name="id" column="userId">
+			<generator class="native" />
+		</id>
+		<join table="UserBooking" optional="true">
+			<key column="UserId" unique="true" />
+			<many-to-one name="booking" column="bookingId" not-null="true" />
+		</join>
+	</class>
+
+	<class name="Booking">
+		<id name="id" column="bookingId">
+			<generator class="native" />
+		</id>
+	</class>
+</hibernate-mapping>
