@@ -46,26 +46,6 @@ public class HibernateMovieDAO implements MovieDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Movie> getMovieSearch(String title, String genre) {
-		List<Movie> movieList = new ArrayList<Movie>();
-		Criteria criteria = session.createCriteria(Movie.class);
-		
-		if (!title.isEmpty() && !genre.isEmpty()){
-			//search with AND			
-		}else{
-			if (!title.isEmpty())
-				criteria.add(Restrictions.ilike("title", title, MatchMode.ANYWHERE)); //case-insensitive like
-			else if (!genre.isEmpty())
-				criteria.add(Restrictions.ilike("genre", genre, MatchMode.ANYWHERE));	
-		}		
-		
-		movieList = criteria.list();
-		session.close();
-		return movieList;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<Movie> getNowShowingMovies() {
 		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
@@ -84,6 +64,26 @@ public class HibernateMovieDAO implements MovieDAO {
 		criteria.add(Restrictions.gt("releaseDate", Calendar.getInstance().getTime())); //greater then
 		criteria.addOrder(Order.asc("releaseDate"));
 		criteria.setMaxResults(3);
+		movieList = criteria.list();
+		session.close();
+		return movieList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Movie> searchMovie(String title, String genre) {
+		List<Movie> movieList = new ArrayList<Movie>();
+		Criteria criteria = session.createCriteria(Movie.class);
+		
+		if (!title.isEmpty() && !genre.isEmpty()){
+			//search with AND			
+		}else{
+			if (!title.isEmpty())
+				criteria.add(Restrictions.ilike("title", title, MatchMode.ANYWHERE)); //case-insensitive like
+			else if (!genre.isEmpty())
+				criteria.add(Restrictions.ilike("genre", genre, MatchMode.ANYWHERE));	
+		}		
+		
 		movieList = criteria.list();
 		session.close();
 		return movieList;

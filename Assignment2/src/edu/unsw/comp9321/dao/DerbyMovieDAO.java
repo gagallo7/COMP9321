@@ -93,7 +93,7 @@ public class DerbyMovieDAO implements MovieDAO {
 	}
 
 	@Override
-	public List<Movie> getMovieSearch(String title, String genre) {
+	public List<Movie> searchMovie(String title, String genre) {
 		// TODO Auto-generated method stub
 		return null;
 	}
