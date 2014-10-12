@@ -34,11 +34,16 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.close();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Movie getMovie(long id) {
-		Movie movie = null;
+		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
-		return movie;
+		criteria.add(Restrictions.eq("id",id));
+		movieList = criteria.list();
+		for (Movie m: movieList)
+			System.out.println(m.getTitle());
+		return movieList.get(0);
 	}
 	
 	@SuppressWarnings("unchecked")

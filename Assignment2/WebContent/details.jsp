@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="edu.unsw.comp9321.model.*"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,23 +35,25 @@
 
 	</c:if>
 
-	<h2>Butterfly Effect</h2>
-	<img class="large" alt="poster" src="img/movie1.jpg">
-	<div class="rating">☆☆☆☆☆</div>
+	<h2>${movie.title}</h2>
+	<img class="large" alt="poster" src="img/${movie.urlPost}">
+	<div class="rating">
+		<c:forEach begin="1" end="${movie.rating}">
+			☆
+		</c:forEach>
+	</div>
 	<div class="movieInfo">
 		<p>
-			<strong>Genre:</strong> Drama
+			<strong>Genre:</strong> ${movie.genre}
 		</p>
 		<p>
-			<strong>Director:</strong> Chris na Lan
+			<strong>Director:</strong> ${movie.director}
 		</p>
 		<p>
 			<strong>Actors:</strong> A., B. and C.
 		</p>
 		<p>
-			<strong>Synopsis:</strong> blablablabla blabla blabla blabla blabla
-			blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla
-			blabla blabla blabla blabla blabla blabla blabla
+			<strong>Synopsis:</strong> ${movie.synopsis}
 		</p>
 	</div>
 

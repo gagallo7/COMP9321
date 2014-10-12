@@ -18,8 +18,8 @@
 	<c:forEach var="movie" items="${movies}">
 		<div class="result">
 			<div class="movie2">
-				<a href="details.jsp"><img class="mini" alt="poster" src="img/${movie.urlPost}"></a>
-				<br> <a href="details.jsp">${movie.title}</a>
+				<a href="?action=detailMovie&id=${movie.id}"><img class="mini" alt="poster" src="img/${movie.urlPost}"></a>
+				<br> <a href="?action=detailMovie&id=${movie.id}">${movie.title}</a>
 				<div class="rating2">
 					<c:forEach begin="1" end="${movie.rating}">
 						☆
@@ -36,11 +36,11 @@
 				</p>
 				<p>
 					<c:if test="${UserRole eq 'user'}">
-						<a href="?action=detailMovie">More Details</a>
+						<a href="?action=detailMovie&id=${movie.id}">More Details</a>
 					</c:if>
 		
 					<c:if test="${UserRole eq 'manager'}">
-			            <li><a href="?action=detailMovie">Set Cinemas and Showtimes</a></li>
+			            <a href="?action=detailMovie&id=${movie.id}">Set Cinemas and Showtimes</a>
 			        </c:if>
 				</p>
 			</div>

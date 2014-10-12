@@ -41,13 +41,13 @@
 				<c:when test="${not empty nowShowingMovies}">
 					<c:forEach var="movie" items="${nowShowingMovies}">
 						<div class="movie">
-							<a href="details.jsp"><img class="mini" alt="poster"
-								src="img/movie1.jpg"></a>
+							<a href="?action=detailMovie&id=${movie.id}"><img class="mini" alt="poster"
+								src="img/${movie.urlPost}"></a>
 							<p>
-								<a href="details.jsp">${movie.title}</a>
+								<a href="?action=detailMovie&id=${movie.id}">${movie.title}</a>
 							</p>
 							<div class="rating">
-								<c:forEach begin="1" end="${movie.ageRating}">
+								<c:forEach begin="1" end="${movie.rating}">
 									☆
 								</c:forEach>
 							</div>
@@ -69,10 +69,10 @@
 				<c:when test="${not empty comingSoonMovies}">
 					<c:forEach var="movie" items="${comingSoonMovies}">
 						<div class="movie">
-							<a href=""><img class="mini" alt="poster"
-								src="${pageContext.request.contextPath}/img/${movie.urlPost}"></a>
+							<a href="?action=detailMovie&id=${movie.id}"><img class="mini" alt="poster"
+								src="img/${movie.urlPost}"></a>
 							<p>
-								<a href="">${movie.title}</a>
+								<a href="?action=detailMovie&id=${movie.id}">${movie.title}</a>
 							</p>
 						</div>			
 					</c:forEach>
