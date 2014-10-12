@@ -67,28 +67,6 @@ public class AddMovieCommand implements Command {
 	    OutputStream outStream = new FileOutputStream(targetFile);
 	    outStream.write(buffer);
 
-		/*
-		 * Part image = request.getPart("image"); String destPath = "/img/";
-		 * OutputStream out = null; InputStream imagecontent = null;
-		 * 
-		 * try { out = new FileOutputStream(new File("testel.ra")); //criou, mas
-		 * diretorio errado imagecontent = image.getInputStream();
-		 * 
-		 * int read = 0; byte[] bytes = new byte[1024];
-		 * 
-		 * while ((read = imagecontent.read(bytes)) != -1) { out.write(bytes, 0,
-		 * read); } logger.info("New file " + movie.getTitle() + " created at "
-		 * + destPath); } catch (FileNotFoundException e) {
-		 * logger.warning("Problems during file upload. Error:" +
-		 * e.getMessage()); } finally { if (out != null) out.close(); if
-		 * (imagecontent != null) imagecontent.close();
-		 * 
-		 * }
-		 * 
-		 * //ImageIO.write((RenderedImage) image, "png", new
-		 * File("imagem.png"));
-		 */
-
 		Movie movie = new Movie();
 
 		movie.setTitle(request.getParameter("title"));
