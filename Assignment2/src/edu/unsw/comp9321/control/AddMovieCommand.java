@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import edu.unsw.comp9321.dao.HibernateMovieDAO;
 import edu.unsw.comp9321.dao.MovieDAO;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
@@ -31,6 +33,7 @@ public class AddMovieCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		Logger logger = Logger.getLogger(this.getClass().getName());
 		Movie movie = new Movie();
+		
 		movie.setTitle(request.getParameter("title"));
 		movie.setGenre(request.getParameter("genre"));
 		movie.setDirector(request.getParameter("director"));

@@ -21,7 +21,7 @@ public class Controller extends HttpServlet {
     static Logger logger = Logger.getLogger(Controller.class.getName());
     
     private HashMap<Actions, Command> commands;
-    private enum Actions {toHomePage, createCinema, addMovie};
+    private enum Actions {toHomePage, login, registerUser, confirmUser,  createCinema, addMovie};
     
     public Controller() {
         super();   
@@ -31,7 +31,10 @@ public class Controller extends HttpServlet {
     	logger.info("Control Servlet init");
     	commands = new HashMap<Actions, Command>();
     	commands.put(Actions.toHomePage, new ToHomePageCommand());
-    	commands.put(Actions.createCinema, new CreateCinemaCommand());
+    	commands.put(Actions.login, new LoginCommand());
+    	commands.put(Actions.registerUser, new RegisterUserCommand());
+    	commands.put(Actions.confirmUser, new ConfirmUserCommand())
+;    	commands.put(Actions.createCinema, new CreateCinemaCommand());
     	commands.put(Actions.addMovie, new AddMovieCommand());
 	}
 
@@ -43,9 +46,13 @@ public class Controller extends HttpServlet {
     		action = Actions.toHomePage;
     	else
     		action = Enum.valueOf(Actions.class, actionParameter);
-	    
-    	Command command = commands.get(action);
-	    command.execute(request, response);	
+    	
+    	if (action == null){
+    		response.sendError(404);
+    	}else{
+	    	Command command = commands.get(action);
+		    command.execute(request, response);	
+    	}
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -14,6 +14,7 @@ import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.jdbc.DBConnectionFactory;
 import edu.unsw.comp9321.model.Cinema;
 import edu.unsw.comp9321.model.Movie;
+import edu.unsw.comp9321.model.UserLogin;
 
 public class DerbyMovieDAO implements MovieDAO {
 	static Logger logger = Logger.getLogger(DerbyMovieDAO.class.getName());
@@ -83,6 +84,12 @@ public class DerbyMovieDAO implements MovieDAO {
 	public List<Movie> getComingSoonMovies() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void registerUser(UserLogin user) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

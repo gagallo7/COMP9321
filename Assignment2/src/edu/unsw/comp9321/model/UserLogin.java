@@ -1,12 +1,13 @@
 package edu.unsw.comp9321.model;
 
-public class User {
+public class UserLogin {
 	private String username;
 	private String firstName;
 	private String lastName;
 	private String nickname;
 	private String email;
 	private String password; 
+	private int confirmed;
 	
 	public String getUsername() {
 		return username;
@@ -44,4 +45,11 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public int getConfirmed() {
+		return confirmed;
+	}
+	public void setConfirmed(int confirmed) {
+		this.confirmed = confirmed;
+	}
+	
 }

@@ -18,5 +18,6 @@
   <property name="hibernate.hbm2ddl.auto">update</property> 
   <mapping resource="edu/unsw/comp9321/model/Movie.hbm.xml"/>
   <mapping resource="edu/unsw/comp9321/model/Cinema.hbm.xml"/>
+  <mapping resource="edu/unsw/comp9321/model/UserLogin.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

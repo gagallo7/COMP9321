@@ -14,6 +14,7 @@ import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.jdbc.HibernateSessionFactory;
 import edu.unsw.comp9321.model.Cinema;
 import edu.unsw.comp9321.model.Movie;
+import edu.unsw.comp9321.model.UserLogin;
 
 public class HibernateMovieDAO implements MovieDAO {
 	static Logger logger = Logger.getLogger(DerbyMovieDAO.class.getName());
@@ -83,6 +84,14 @@ public class HibernateMovieDAO implements MovieDAO {
 		cinemaList = criteria.list();
 		session.close();
 		return cinemaList;
+	}
+
+	@Override
+	public void registerUser(UserLogin user) {
+		session.beginTransaction();
+		session.save(user);
+		session.getTransaction().commit();
+		session.close();		
 	}
 
 
