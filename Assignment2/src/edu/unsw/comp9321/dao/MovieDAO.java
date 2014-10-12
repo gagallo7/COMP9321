@@ -9,6 +9,7 @@ import java.util.List;
 public interface MovieDAO {
 	public void addMovie(Movie movie);
 	public List<Movie> getMovieList();
+	public List<Movie> getMovieSearch(String title, String genre);
 	public List<Movie> getNowShowingMovies();
 	public List<Movie> getComingSoonMovies();
 	

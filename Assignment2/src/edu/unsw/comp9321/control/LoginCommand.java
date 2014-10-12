@@ -14,8 +14,9 @@ public class LoginCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String username = request.getParameter("username");
 		
+		String username = request.getParameter("username");
+		System.out.println("AQUIIII");
 		logger.info("Username = " + username);
 		if (username != null) {
 			HttpSession session = request.getSession();
@@ -26,8 +27,8 @@ public class LoginCommand implements Command {
 			}
 			session.setAttribute("username", username);
 		}
-
-		RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");
+		
+		RequestDispatcher rd = request.getRequestDispatcher("control?action=toHomePage");
 		rd.forward(request, response);
 
 	}

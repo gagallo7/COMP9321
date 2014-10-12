@@ -15,7 +15,7 @@
 	<h2>Search for Movies</h2>
 
 	<strong id="info"></strong>
-	<form action="test" method="get" name="searchForm"
+	<form action="control" method="get" name="searchForm"
 		onsubmit="return checkLength(title, 1, info);">
 
 		<p>
@@ -35,6 +35,7 @@
 				<option value="thriller">Thriller</option>
 			</select>
 		</p>
+		<input type="hidden" name="action" value="searchMovie"/> 
 	</form>
 </body>
 </html>
