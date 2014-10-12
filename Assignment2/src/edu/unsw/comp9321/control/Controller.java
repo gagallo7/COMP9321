@@ -21,7 +21,7 @@ public class Controller extends HttpServlet {
     static Logger logger = Logger.getLogger(Controller.class.getName());
     
     private HashMap<Actions, Command> commands;
-    private enum Actions {toHomePage, toPage, login, registerUser, confirmUser,  createCinema, addMovie, addShowtime};
+    private enum Actions {toHomePage, toPage, login, registerUser, confirmUser, searchMovie, createCinema, addMovie, addShowtime};
     
     public Controller() {
         super();   
@@ -35,6 +35,7 @@ public class Controller extends HttpServlet {
     	commands.put(Actions.login, new LoginCommand());
     	commands.put(Actions.registerUser, new RegisterUserCommand());
     	commands.put(Actions.confirmUser, new ConfirmUserCommand());
+    	commands.put(Actions.searchMovie, new SearchMovieCommand());
     	commands.put(Actions.createCinema, new CreateCinemaCommand());
     	commands.put(Actions.addMovie, new AddMovieCommand());
     	commands.put(Actions.addShowtime, new ToPageCommand());
@@ -43,10 +44,11 @@ public class Controller extends HttpServlet {
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String actionParameter = request.getParameter("action"); 
     	Actions action;
-    	
-    	if (actionParameter == null)
+    	RequestDispatcher rd;
+		
+    	if (actionParameter == null || actionParameter.isEmpty()){
     		action = Actions.toHomePage;
-    	else
+		}else
     		action = Enum.valueOf(Actions.class, actionParameter);
     	
     	if (action == null){

@@ -23,12 +23,13 @@
 		<li><a href="register.jsp">Register</a></li>
 
 		<c:if test="${UserRole eq 'user'}">
-			<li><a href="?page=search">Search</a></li>
-			<li><a href="?page=booking">Bookings</a></li>
+			<li><a href="?action=toPage&page=search">Search</a></li>
+			<li><a href="?action=toPage&page=booking">Bookings</a></li>
 		</c:if>
 		
 		<c:if test="${UserRole eq 'manager'}">
-            <li><a href="control?action=toPage&page=cinemas">Cinemas and Movies</a></li>
+            <li><a href="?action=toPage&page=cinemas">Cinemas and Movies</a></li>
+            <li><a href="?action=toPage&page=search">Search</a></li>
         </c:if>
 	</ul>
 

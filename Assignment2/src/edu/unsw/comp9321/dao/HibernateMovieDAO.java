@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -38,6 +39,26 @@ public class HibernateMovieDAO implements MovieDAO {
 	public List<Movie> getMovieList() {
 		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
+		movieList = criteria.list();
+		session.close();
+		return movieList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Movie> getMovieSearch(String title, String genre) {
+		List<Movie> movieList = new ArrayList<Movie>();
+		Criteria criteria = session.createCriteria(Movie.class);
+		
+		if (!title.isEmpty() && !genre.isEmpty()){
+			//search with AND			
+		}else{
+			if (!title.isEmpty())
+				criteria.add(Restrictions.ilike("title", title, MatchMode.ANYWHERE)); //case-insensitive like
+			else if (!genre.isEmpty())
+				criteria.add(Restrictions.ilike("genre", genre, MatchMode.ANYWHERE));	
+		}		
+		
 		movieList = criteria.list();
 		session.close();
 		return movieList;
@@ -93,9 +114,6 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.getTransaction().commit();
 		session.close();		
 	}
-
-
-
 
 
 }

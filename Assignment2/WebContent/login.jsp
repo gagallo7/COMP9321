@@ -13,7 +13,7 @@
     <%@ include file="header.html"%>
     <strong id="info"></strong>
     
-    <form action="test" method="post">
+    <form action="control" method="post">
         <p>
             Username: <input type="text" name="username" pattern="[a-z]...*" required="required">
         </p>
@@ -21,6 +21,7 @@
             Password: <input type="password" name="password" id="p" required="required">
         </p>
         <p>
+        	<input type="hidden" name="action" value="login"/> 
             <input type="submit" value="Log in">
         </p>
     </form>
