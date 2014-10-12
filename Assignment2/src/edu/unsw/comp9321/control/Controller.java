@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ import org.jboss.logging.Logger;
 @WebServlet({ "/Controller", "/control" })
 @MultipartConfig// expects requests to made using the multipart/form-data - read file-image
 public class Controller extends HttpServlet {
+	private HttpServletRequest bak = null;
 	private static final long serialVersionUID = 1L;
     static Logger logger = Logger.getLogger(Controller.class.getName());
     
@@ -43,6 +45,7 @@ public class Controller extends HttpServlet {
 	}
 
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	bak = request;
     	String actionParameter = request.getParameter("action"); 
     	Actions action;
     	RequestDispatcher rd;
@@ -56,7 +59,7 @@ public class Controller extends HttpServlet {
     		response.sendError(404);
     	}else{
 	    	Command command = commands.get(action);
-		    command.execute(request, response);	
+		    command.execute(bak, response);	
     	}
     }
 

@@ -1,7 +1,10 @@
 package edu.unsw.comp9321.control;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +13,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -34,68 +38,34 @@ public class AddMovieCommand implements Command {
 	private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
 	private static final int MAX_REQUEST_SIZE = 1024 * 1024;
 
+	private static String getFilename(Part part) {
+	    for (String cd : part.getHeader("content-disposition").split(";")) {
+	        if (cd.trim().startsWith("filename")) {
+	            String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+	            return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.
+	        }
+	    }
+	    return null;
+	}
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		Logger logger = Logger.getLogger(this.getClass().getName());
 		// salvar url
 
-		// Check that we have a file upload request
-		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		Part filePart = request.getPart("poster"); // Retrieves <input type="file" name="file">
+	    String fileName = getFilename(filePart);
+	    InputStream filecontent = filePart.getInputStream();
+	    byte[] buffer = new byte[filecontent.available()];
+	    filecontent.read(buffer);
 
-		if (!isMultipart) {
-			return;
-		}
-
-		// Create a factory for disk-based file items
-		DiskFileItemFactory factory = new DiskFileItemFactory();
-
-		// Sets the size threshold beyond which files are written directly to
-		// disk.
-		factory.setSizeThreshold(MAX_MEMORY_SIZE);
-
-		// Sets the directory used to temporarily store files that are larger
-		// than the configured size threshold. We use temporary directory for
-		// java
-		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
-
-		// constructs the folder where uploaded file will be stored
-		// String uploadFolder = getServletContext().getRealPath("")
-		// + File.separator + DATA_DIRECTORY;
-		String uploadFolder = request.getAttribute("path") + File.separator + DATA_DIRECTORY;
-
-		// Create a new file upload handler
-		ServletFileUpload upload = new ServletFileUpload(factory);
-
-		// Set overall request size constraint
-		upload.setSizeMax(MAX_REQUEST_SIZE);
-		
-		try {
-			// Parse the request
-			List<FileItem> items = upload.parseRequest(request);
-			Iterator<FileItem> iter = items.iterator();
-			logger.info("Trying to save Poster3" + iter.toString() + " has next " + iter.hasNext());
-			while (iter.hasNext()) {
-				FileItem item = (FileItem) iter.next();
-				
-				if (!item.isFormField()) {
-					String fileName = new File(item.getName()).getName();
-					logger.info("File name? " + fileName);
-					String filePath = uploadFolder + File.separator + fileName;
-					logger.info("File path? " + filePath);
-					File uploadedFile = new File(filePath);
-					System.out.println(filePath);
-					// saves the file to upload directory
-					item.write(uploadedFile);
-					logger.info("Poster saved in: " + filePath);
-				}
-			}
-
-		} catch (FileUploadException ex) {
-			throw new ServletException(ex);
-		} catch (Exception ex) {
-			throw new ServletException(ex);
-		}
+	    String filePath = request.getServletContext().getRealPath("") + File.separator
+	    		+ "img" + File.separator;
+	    File targetFile = new File(filePath + fileName);
+	    logger.info("File " + fileName + " created at " + filePath);
+	    OutputStream outStream = new FileOutputStream(targetFile);
+	    outStream.write(buffer);
 
 		/*
 		 * Part image = request.getPart("image"); String destPath = "/img/";
@@ -119,33 +89,34 @@ public class AddMovieCommand implements Command {
 		 * File("imagem.png"));
 		 */
 
-//		Movie movie = new Movie();
-//
-//		movie.setTitle(request.getParameter("title"));
-//		movie.setGenre(request.getParameter("genre"));
-//		movie.setDirector(request.getParameter("director"));
-//		movie.setSynopsis(request.getParameter("synopsis"));
-//		movie.setAgeRating(Integer.parseInt(request.getParameter("ageRating")));
-//		movie.setRating(0);
-//
-//		// Manipulating date
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//		Date date;
-//		try {
-//			date = dateFormat.parse(request.getParameter("releaseDate"));
-//			movie.setReleaseDate(date);
-//		} catch (ParseException e) {
-//			logger.warning("Problem reading the release date of the movie: "
-//					+ e.getStackTrace());
-//		}
-//		
-//		try {
-//			MovieDAO dao = new HibernateMovieDAO();
-//			dao.addMovie(movie);
-//
-//		} catch (ServiceLocatorException e) {
-//			e.printStackTrace();
-//		}
+		Movie movie = new Movie();
+
+		movie.setTitle(request.getParameter("title"));
+		movie.setGenre(request.getParameter("genre"));
+		movie.setDirector(request.getParameter("director"));
+		movie.setSynopsis(request.getParameter("synopsis"));
+		movie.setAgeRating(Integer.parseInt(request.getParameter("ageRating")));
+		movie.setUrlPost(fileName);
+		movie.setRating(0);
+
+		// Manipulating date
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date;
+		try {
+			date = dateFormat.parse(request.getParameter("releaseDate"));
+			movie.setReleaseDate(date);
+		} catch (ParseException e) {
+			logger.warning("Problem reading the release date of the movie: "
+					+ e.getStackTrace());
+		}
+		
+		try {
+			MovieDAO dao = new HibernateMovieDAO();
+			dao.addMovie(movie);
+
+		} catch (ServiceLocatorException e) {
+			e.printStackTrace();
+		}
 
 		RequestDispatcher rd = request
 				.getRequestDispatcher("control?action=toHomePage");
