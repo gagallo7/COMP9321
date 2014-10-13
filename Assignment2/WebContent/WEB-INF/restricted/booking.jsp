@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css">
-<title>Search for Movies</title>
+<title>Booking Movies</title>
 </head>
 <body>
 	<%@ include file="/header.html"%>

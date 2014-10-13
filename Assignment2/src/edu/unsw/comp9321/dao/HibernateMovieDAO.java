@@ -41,18 +41,14 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.getTransaction().commit();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
-	public Movie getMovie(long id) { //session close at getCinemaList
-		List<Movie> movieList = new ArrayList<Movie>();
-		Criteria criteria = session.createCriteria(Movie.class);
-		criteria.add(Restrictions.eq("id",id));
-		movieList = criteria.list();
-		Movie movie = movieList.get(0);
+	public Movie getMovie(long id) { 
+		Movie movie = (Movie) session.load(Movie.class, id);
 		if (!movie.getReleaseDate().after(Calendar.getInstance().getTime())){ //not after today
 			movie.setNowShowing(1);
 		}
 		return movie;
+		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -142,14 +138,9 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.getTransaction().commit();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public Cinema getCinema(Long id) {
-		List<Cinema> cinemaList = new ArrayList<Cinema>();
-		Criteria criteria = session.createCriteria(Cinema.class);
-		criteria.add(Restrictions.eq("id",id));
-		cinemaList = criteria.list();
-		return cinemaList.get(0);
+		return (Cinema) session.load(Cinema.class, id);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -167,6 +158,11 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.save(cinemaSession);
 		session.getTransaction().commit();
 	}
+	
+	@Override
+	public CinemaSession getCinemaSession(Long id){
+		return (CinemaSession) session.load(CinemaSession.class, id);
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -176,6 +172,12 @@ public class HibernateMovieDAO implements MovieDAO {
 		criteria.add(Restrictions.eq("movieId", movieID));
 		cinemaSessionList = criteria.list();
 		return cinemaSessionList;
+	}
+	
+	@Override
+	public boolean isSessionAvailable(Long cinemaSessionID, int numTickets){
+		CinemaSession cinemaSession = (CinemaSession) session.load(CinemaSession.class, cinemaSessionID);
+		return ((cinemaSession.getAvailableSeats() - numTickets) >= 0);
 	}
 	
 	@Override

@@ -13,23 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import edu.unsw.comp9321.model.UserLogin;
-import edu.unsw.comp9321.util.MailSender;
+
 
 public class RegisterUserCommand implements Command {
 
 	private void handleMail(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		MailSender sender = null;
+		//MailSender sender = null;
 		String target="";
 		try {
-			sender = MailSender.getMailSender();
+			//sender = MailSender.getMailSender();
 			String toAddress = request.getParameter("email");
 			
 			logger.info ( "user email: " + toAddress );
 			String subject = "Welcome to Popcorn Troll";
 			StringBuffer mailBody = new StringBuffer();
 			mailBody.append("testing " + request.getParameter("body"));
-			sender.sendMessage(toAddress, subject, mailBody);
+			//sender.sendMessage(toAddress, subject, mailBody);
 			target="restricted/home.jsp";
 		} catch (Exception e) {
 			logger.warn("Oopsies, could not send message "+e.getMessage());

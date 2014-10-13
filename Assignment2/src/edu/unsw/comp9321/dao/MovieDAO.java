@@ -24,7 +24,9 @@ public interface MovieDAO {
 	public List<Cinema> getCinemaList();
 	
 	public void addCinemaSession(CinemaSession cinemaSession);
+	public CinemaSession getCinemaSession(Long id);
 	public List<CinemaSession> getMovieSessions(Long movieID);
+	public boolean isSessionAvailable(Long cinemaSessionID, int numTickets);
 	
 	public void registerUser(UserLogin user);
 	
