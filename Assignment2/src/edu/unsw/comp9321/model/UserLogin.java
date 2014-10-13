@@ -6,26 +6,35 @@ public class UserLogin implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String username;
+	private String password;
+	private String nickname;
 	private String firstName;
 	private String lastName;
-	private String nickname;
 	private String email;
-	private String password;
 	private String code;
+	private boolean confirmed;
 	
-	public String getCode() {
-		return code;
+	public UserLogin(){
+		confirmed = false;
 	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	private int confirmed;
 	
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -39,28 +48,22 @@ public class UserLogin implements Serializable{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPassword() {
-		return password;
+	public String getCode() {
+		return code;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setCode(String code) {
+		this.code = code;
 	}
-	public int getConfirmed() {
+	public boolean isConfirmed() {
 		return confirmed;
 	}
-	public void setConfirmed(int confirmed) {
+	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
 	}
 	

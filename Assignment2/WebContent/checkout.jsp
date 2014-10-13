@@ -18,7 +18,7 @@
 	<br><strong>Showtime: </strong> ${cinemaSession.showTime }
 	
 	<h3>Payment Details</h3>
-	<form action="control" onchange="x.value=t.value*12;" name="payment" method="post">
+	<form action="control" name="payment" method="post">
 		<p>
 			Credit Card Number: <input type="text" pattern="[0-9]*" name="cardNo" required="required"> 
 		</p>

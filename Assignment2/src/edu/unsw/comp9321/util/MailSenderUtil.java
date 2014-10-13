@@ -17,7 +17,9 @@ import javax.naming.NamingException;
 
 import edu.unsw.comp9321.exception.MailSenderException;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
+import edu.unsw.comp9321.jdbc.MailSessionFactory;
 
+//DESATIVATE ANTIVIRUS
 public class MailSenderUtil {
 
 	static Logger logger = Logger.getLogger(MailSenderUtil.class.getName());
@@ -39,10 +41,10 @@ public class MailSenderUtil {
 	 * @throws ServiceLocatorException
 	 */
 	private MailSenderUtil() throws MailSenderException, ServiceLocatorException {
-		try {
-			ctx = new InitialContext();
-			Context envContext = (Context) ctx.lookup("java:comp/env");
-			session = (Session) envContext.lookup("mail/cs9321");
+			//ctx = new InitialContext();
+			//Context envContext = (Context) ctx.lookup("java:comp/env");
+			//session = (Session) envContext.lookup("mail/cs9321"); //using Service Locator
+			session = MailSessionFactory.getSession();
 			logger.info("Mailer Session obtained" + session.toString());
 			mailProps = session.getProperties();
 			logger.info("User " + username);
@@ -60,12 +62,6 @@ public class MailSenderUtil {
 				}
 			  });
 			
-		} catch (NamingException e) {
-			logger.severe("Cannot find context, throwing exception"
-					+ e.getMessage());
-			e.printStackTrace();
-			throw new ServiceLocatorException();
-		}
 	}
 
 	/**

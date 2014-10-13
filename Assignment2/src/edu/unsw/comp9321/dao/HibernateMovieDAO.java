@@ -20,7 +20,7 @@ import edu.unsw.comp9321.model.Review;
 import edu.unsw.comp9321.model.UserLogin;
 
 public class HibernateMovieDAO implements MovieDAO {
-	static Logger logger = Logger.getLogger(DerbyMovieDAO.class.getName());
+	static Logger logger = Logger.getLogger(HibernateMovieDAO.class.getName());
 	private Session session;
 	
 	public HibernateMovieDAO() throws ServiceLocatorException {
@@ -54,34 +54,28 @@ public class HibernateMovieDAO implements MovieDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movie> getMovieList() {
-		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
-		movieList = criteria.list();
-		return movieList;
+		return criteria.list();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movie> getNowShowingMovies() { //session close at getComingSoonMovies
-		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
 		criteria.add(Restrictions.le("releaseDate", Calendar.getInstance().getTime())); //less or equal to
 		criteria.addOrder(Order.desc("rating"));
 		criteria.setMaxResults(3);
-		movieList = criteria.list();
-		return movieList;
+		return criteria.list();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movie> getComingSoonMovies() {
-		List<Movie> movieList = new ArrayList<Movie>();
 		Criteria criteria = session.createCriteria(Movie.class);
 		criteria.add(Restrictions.gt("releaseDate", Calendar.getInstance().getTime())); //greater then
 		criteria.addOrder(Order.asc("releaseDate"));
 		criteria.setMaxResults(3);
-		movieList = criteria.list();
-		return movieList;
+		return criteria.list();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -124,11 +118,9 @@ public class HibernateMovieDAO implements MovieDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Review> getReviewList(Long movieID){
-		List<Review> reviewList = new ArrayList<Review>();
 		Criteria criteria = session.createCriteria(Review.class);
 		criteria.add(Restrictions.eq("movieId", movieID));
-		reviewList = criteria.list();
-		return reviewList;		
+		return criteria.list();
 	}
 	
 	@Override
@@ -146,10 +138,8 @@ public class HibernateMovieDAO implements MovieDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cinema> getCinemaList() {
-		List<Cinema> cinemaList = new ArrayList<Cinema>();
 		Criteria criteria = session.createCriteria(Cinema.class);
-		cinemaList = criteria.list();
-		return cinemaList;
+		return criteria.list();
 	}
 	
 	@Override
@@ -167,11 +157,9 @@ public class HibernateMovieDAO implements MovieDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CinemaSession> getMovieSessions(Long movieID) {
-		List<CinemaSession> cinemaSessionList = new ArrayList<CinemaSession>();
 		Criteria criteria = session.createCriteria(CinemaSession.class);
 		criteria.add(Restrictions.eq("movieId", movieID));
-		cinemaSessionList = criteria.list();
-		return cinemaSessionList;
+		return criteria.list();
 	}
 	
 	@Override
@@ -186,22 +174,35 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.save(user);
 		session.getTransaction().commit();		
 	}
-	
-	public void closeSession(){
-		session.close();
-	}
 
-	public void addUserLogin (UserLogin ul)
-	{
+	public void addUserLogin (UserLogin ul){
 		session.beginTransaction();
 		session.save(ul);
 		session.getTransaction().commit();
 	}
 	
-	public boolean usernameExists (String username)
-	{
+	public void confirmUser(String code){
+		Criteria criteria = session.createCriteria(UserLogin.class);
+		criteria.add(Restrictions.eq("code", code));
+		UserLogin user = (UserLogin) criteria.list().get(0);
+		user.setConfirmed(true);
+		session.beginTransaction();
+		session.update(user);
+		session.getTransaction().commit();
+		System.out.println("user " + user.getUsername());
+	}
+	
+	public UserLogin getUser(String username){
+		return (UserLogin) session.load(UserLogin.class, username);
+	}
+	
+	public boolean usernameExists (String username){
 		Criteria criteria = session.createCriteria(UserLogin.class);
 		criteria.add(Restrictions.eq("username", username));
 		return (!criteria.list().isEmpty());
+	}
+	
+	public void closeSession(){
+		session.close();
 	}
 }

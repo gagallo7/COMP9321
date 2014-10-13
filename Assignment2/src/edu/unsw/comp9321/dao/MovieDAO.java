@@ -29,8 +29,9 @@ public interface MovieDAO {
 	public boolean isSessionAvailable(Long cinemaSessionID, int numTickets);
 	
 	public void registerUser(UserLogin user);
-	
 	public void addUserLogin (UserLogin ul);
+	public void confirmUser(String code);
+	public UserLogin getUser(String username);
 	public boolean usernameExists (String username);
 	
 	public void closeSession();
