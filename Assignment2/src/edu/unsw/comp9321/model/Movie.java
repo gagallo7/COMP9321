@@ -14,8 +14,16 @@ public class Movie implements Serializable{
 	private String synopsis;
 	private int ageRating;
 	private int rating;
+	private int ratingSum;
+	private int ratingNum;
 	private Date releaseDate;
 	private int nowShowing; //without mapping cause it changes day by day
+	
+	public Movie(){
+		rating = 0;
+		ratingSum = 0;
+		ratingNum = 0;
+	}
 	
 	public long getId() {
 		return id;
@@ -65,6 +73,18 @@ public class Movie implements Serializable{
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+	public int getRatingSum() {
+		return ratingSum;
+	}
+	public void setRatingSum(int ratingSum) {
+		this.ratingSum = ratingSum;
+	}
+	public int getRatingNum() {
+		return ratingNum;
+	}
+	public void setRatingNum(int ratingNum) {
+		this.ratingNum = ratingNum;
+	}
 	public Date getReleaseDate() {
 		return releaseDate;
 	}
@@ -82,3 +102,4 @@ public class Movie implements Serializable{
 	
 	//Ctrl+3 generate
 }
+

@@ -91,6 +91,7 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<input type="hidden" name="action" value="bookSession"/>
 			<input type="submit" value="Book!">
 		</form>
 		<br /><br /><br />

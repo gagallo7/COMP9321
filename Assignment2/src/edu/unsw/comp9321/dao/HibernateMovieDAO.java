@@ -35,6 +35,12 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.getTransaction().commit();
 	}
 	
+	public void updateMovie(Movie movie){
+		session.beginTransaction();
+		session.update(movie);
+		session.getTransaction().commit();
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public Movie getMovie(long id) { //session close at getCinemaList
@@ -107,6 +113,14 @@ public class HibernateMovieDAO implements MovieDAO {
 	
 	@Override
 	public void addReview(Review review){
+		Movie movie = getMovie(review.getMovieId());
+		int numRating = movie.getRatingNum() + 1;
+		int sumRating = movie.getRatingSum() + review.getRating();
+		int rating = sumRating / numRating;
+		movie.setRating(rating);
+		movie.setRatingSum(sumRating);
+		movie.setRatingNum(numRating);
+		updateMovie(movie);
 		session.beginTransaction();
 		session.save(review);
 		session.getTransaction().commit();
@@ -174,7 +188,5 @@ public class HibernateMovieDAO implements MovieDAO {
 	public void closeSession(){
 		session.close();
 	}
-
-
 
 }

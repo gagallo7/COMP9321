@@ -22,7 +22,7 @@ public class Controller extends HttpServlet {
     static Logger logger = Logger.getLogger(Controller.class.getName());
     
     private HashMap<Actions, Command> commands;
-    private enum Actions {toHomePage, toPage, login, registerUser, confirmUser, addCinema, addCinemaSession, addMovie, addShowtime,  searchMovie, detailMovie, reviewMovie};
+    private enum Actions {toHomePage, toPage, login, registerUser, confirmUser, addCinema, addCinemaSession, addMovie, addShowtime,  searchMovie, detailMovie, reviewMovie, bookSession};
     
     public Controller() {
         super();   
@@ -34,7 +34,7 @@ public class Controller extends HttpServlet {
     	commands.put(Actions.toHomePage, 	new ToHomePageCommand());
     	commands.put(Actions.toPage, 		new ToPageCommand());
     	commands.put(Actions.login, 		new LoginCommand());
-    	commands.put(Actions.registerUser, 	new RegisterUserCommand2());
+    	commands.put(Actions.registerUser, 	new RegisterUserCommand());
     	commands.put(Actions.confirmUser, 	new ConfirmUserCommand());
     	commands.put(Actions.addCinema, 	new AddCinemaCommand());
     	commands.put(Actions.addCinemaSession, new AddCinemaSessionCommand());
@@ -43,12 +43,12 @@ public class Controller extends HttpServlet {
     	commands.put(Actions.searchMovie, 	new SearchMovieCommand());
     	commands.put(Actions.detailMovie, 	new DetailMovieCommand());
     	commands.put(Actions.reviewMovie, 	new ReviewMovieCommand());
+    	commands.put(Actions.bookSession, 	new BookSessionCommand());
 	}
 
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String actionParameter = request.getParameter("action"); 
     	Actions action;
-    	RequestDispatcher rd;
 		
     	if (actionParameter == null || actionParameter.isEmpty()){
     		action = Actions.toHomePage;

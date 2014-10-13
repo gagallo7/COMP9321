@@ -7,7 +7,47 @@ import java.io.Serializable;
  */
 
 public class Booking implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private long id;
+	private String username;
 	private boolean confirmed;
 	private int numberOfTickets;
+	private CinemaSession cinemaSession;
+	
+	public Booking(){
+		confirmed = false;
+	}
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public boolean isConfirmed() {
+		return confirmed;
+	}
+	public void setConfirmed(boolean confirmed) {
+		this.confirmed = confirmed;
+	}
+	public int getNumberOfTickets() {
+		return numberOfTickets;
+	}
+	public void setNumberOfTickets(int numberOfTickets) {
+		this.numberOfTickets = numberOfTickets;
+	}
+	public CinemaSession getCinemaSession() {
+		return cinemaSession;
+	}
+	public void setCinemaSession(CinemaSession cinemaSession) {
+		this.cinemaSession = cinemaSession;
+	}
+	
 }

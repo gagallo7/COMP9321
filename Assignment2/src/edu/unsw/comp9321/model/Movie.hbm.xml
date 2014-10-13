@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12/10/2014 08:29:16 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 13/10/2014 19:42:32 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="edu.unsw.comp9321.model.Movie" table="MOVIE">
-         <id name="id" column="ID">
+        <id name="id" type="long">
+            <column name="ID" />
             <generator class="native" />
         </id>
         <property name="title" type="java.lang.String">
@@ -28,9 +29,14 @@
         <property name="rating" type="int">
             <column name="RATING" />
         </property>
-        <property name="releaseDate" type="java.sql.Date">
+        <property name="ratingSum" type="int">
+            <column name="RATINGSUM" />
+        </property>
+        <property name="ratingNum" type="int">
+            <column name="RATINGNUM" />
+        </property>
+        <property name="releaseDate" type="java.util.Date">
             <column name="RELEASEDATE" />
         </property>
     </class>
 </hibernate-mapping>
-
