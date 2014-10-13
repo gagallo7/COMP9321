@@ -119,8 +119,8 @@ public class RegisterUserCommand implements Command {
 
 			String subject = "Welcome to Popcorn Troll";
 			StringBuffer mailBody = new StringBuffer();
-			mailBody.append("Your activation code is " + code);
-			mailBody.append(" <a href=http://localhost:8080/Assign2/control?action=confirmUser&code="+code+" />");
+			mailBody.append("Your activation code link is " + code);
+			mailBody.append(" <a href=http://localhost:8080/Assign2/control?action=confirmUser&code="+code+"here </a>");
 			sender.sendMessage(toAddress, subject, mailBody);
 			target = "success.jsp";
 

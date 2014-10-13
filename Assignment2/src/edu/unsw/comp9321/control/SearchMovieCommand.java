@@ -30,7 +30,7 @@ public class SearchMovieCommand implements Command {
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/restricted/results.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/results.jsp");
 		rd.forward(request, response);
 	}
 
