@@ -24,8 +24,6 @@ public class LoginCommand implements Command {
 				session.setAttribute("UserRole", "user");
 			}
 			session.setAttribute("username", username);
-			session.setAttribute("userId", 1);
-			session.setAttribute("nickname", "rahmorg");
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("control?action=toHomePage");
