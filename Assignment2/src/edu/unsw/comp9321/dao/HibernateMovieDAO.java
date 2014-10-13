@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.hibernate.Criteria;
-import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -212,4 +211,6 @@ public class HibernateMovieDAO implements MovieDAO {
 	public void closeSession(){
 		session.close();
 	}
+
+
 }

@@ -7,7 +7,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -20,6 +22,7 @@ import edu.unsw.comp9321.dao.HibernateMovieDAO;
 import edu.unsw.comp9321.dao.MovieDAO;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.model.Movie;
+import edu.unsw.comp9321.util.SaferStringUtil;
 
 public class AddMovieCommand implements Command {
 
@@ -32,6 +35,8 @@ public class AddMovieCommand implements Command {
 	    }
 	    return null;
 	}
+
+	private boolean String;
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
@@ -54,11 +59,11 @@ public class AddMovieCommand implements Command {
 	    outStream.close();
 	    
 		Movie movie = new Movie();
-
-		movie.setTitle(request.getParameter("title"));
+		movie.setTitle(SaferStringUtil.convert(request.getParameter("title")));
 		movie.setGenre(request.getParameter("genre"));
-		movie.setDirector(request.getParameter("director"));
-		movie.setSynopsis(request.getParameter("synopsis"));
+		movie.setDirector(SaferStringUtil.convert(request.getParameter("director")));
+		movie.setSynopsis(SaferStringUtil.convert(request.getParameter("synopsis")));
+		movie.setActors(request.getParameter("actors"));
 		movie.setAgeRating(Integer.parseInt(request.getParameter("ageRating")));
 		movie.setUrlPost(fileName);
 		movie.setRating(0);
@@ -85,7 +90,6 @@ public class AddMovieCommand implements Command {
 		RequestDispatcher rd = request
 				.getRequestDispatcher("control?action=toHomePage");
 		rd.forward(request, response);
-
 	}
 
 }

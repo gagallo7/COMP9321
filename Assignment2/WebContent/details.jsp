@@ -14,29 +14,31 @@
 
 	<!-- -------------------OWNER ADD SHOWTIME AND CINEMAS------------------- -->
 	<c:if test="${UserRole eq 'manager'}">
-		<h2>Associate this movie with a cinema</h2>
-		<form action="control" method="post">
-			<p>
-				Which cinema? <select name="cinemaId">
-					<c:forEach var="cinema" items="${cinemas}">
-						<option value="${cinema.id}">${cinema.location}</option>
-					</c:forEach>
-				</select>
-			</p>
-			<p>
-				Date (DD/MM/YYYY): <input type="text" name="showDate"
-					pattern="[0-3][0-9]/[0-1][0-9]/201[4-9]" required="required">
-			</p>
-			<p>
-				Time (HH:MM): <input type="text" name="showTime"
-					pattern="[0-2][0-9]:[0-5][0-9]" required="required">
-			</p>
-			<p>
-				<input type="hidden" name="movieId" value="${movie.id}" /> <input
-					type="hidden" name="action" value="addCinemaSession" /> <input
-					type="submit" value="Create Session">
-			</p>
-		</form>
+		<c:if test="${movie.nowShowing eq 1}">
+			<h2>Associate this movie with a cinema</h2>
+			<form action="control" method="post">
+				<p>
+					Which cinema? <select name="cinemaId">
+						<c:forEach var="cinema" items="${cinemas}">
+							<option value="${cinema.id}">${cinema.location}</option>
+						</c:forEach>
+					</select>
+				</p>
+				<p>
+					Date (DD/MM/YYYY): <input type="text" name="showDate"
+						pattern="[0-3][0-9]/[0-1][0-9]/201[4-9]" required="required">
+				</p>
+				<p>
+					Time (HH:MM): <input type="text" name="showTime"
+						pattern="[0-2][0-9]:[0-5][0-9]" required="required">
+				</p>
+				<p>
+					<input type="hidden" name="movieId" value="${movie.id}" /> <input
+						type="hidden" name="action" value="addCinemaSession" /> <input
+						type="submit" value="Create Session">
+				</p>
+			</form>
+		</c:if>
 	</c:if>
 	<!-- ---------------------------------------------------------------------- -->
 
@@ -56,7 +58,7 @@
 			<strong>Director:</strong> ${movie.director}
 		</p>
 		<p>
-			<strong>Actors:</strong> A., B. and C.
+			<strong>Actors:</strong> ${movie.actors}
 		</p>
 		<p>
 			<strong>Synopsis:</strong> ${movie.synopsis}
@@ -99,9 +101,9 @@
 					<output id="x"></output>
 					)
 				</p>
-			</c:if>
-			<input type="hidden" name="action" value="bookSession" /> <input
+				<input type="hidden" name="action" value="bookSession" /> <input
 				type="submit" value="Book!">
+			</c:if>
 		</form>
 		<br />
 		<br />

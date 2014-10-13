@@ -13,7 +13,6 @@
 <body>
 	<%@ include file="/header.html"%>
 	
-	<c:if test="${UserRole eq 'user'}">
 		<h2>Showing ${fn:length(movies)} results</h2>
 		<c:forEach var="movie" items="${movies}">
 			<div class="result">
@@ -32,7 +31,7 @@
 						<strong>Genre:</strong> ${movie.genre}
 					</p>
 					<p>
-						<strong>Actors:</strong> A., B. and C.
+						<strong>Actors:</strong> ${movie.actors}
 					</p>
 					<p>
 						<a href="?action=detailMovie&id=${movie.id}">More Details</a>
@@ -40,38 +39,6 @@
 				</div>
 			</div>
 		</c:forEach>
-	</c:if>
-	
-	<c:if test="${UserRole eq 'manager'}">
-		<c:forEach var="movie" items="${movies}">
-			<c:if test="${movie.nowShowing eq 1}">
-				<div class="result">
-					<div class="movie2">
-						<a href="?action=detailMovie&id=${movie.id}"><img class="mini" alt="poster" src="img/${movie.urlPost}"></a>
-						<br> <a href="?action=detailMovie&id=${movie.id}">${movie.title}</a>
-						<div class="rating2">
-							<c:forEach begin="1" end="${movie.rating}">
-								☆
-							</c:forEach>
-						</div>
-					</div>
-			
-					<div class="movieInfo">
-						<p>
-							<strong>Genre:</strong> ${movie.genre}
-						</p>
-						<p>
-							<strong>Actors:</strong> A., B. and C.
-						</p>
-						<p>
-					    	<a href="?action=detailMovie&id=${movie.id}">Set Cinemas and Showtimes</a>					   
-						</p>
-					</div>
-				</div>
-			</c:if>
-		</c:forEach>
-	</c:if>
-
 
 </body>
 </html>

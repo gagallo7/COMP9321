@@ -23,6 +23,9 @@
         <property name="synopsis" type="java.lang.String">
             <column name="SYNOPSIS" />
         </property>
+        <property name="actors" type="java.lang.String">
+            <column name="ACTORS" />
+        </property>
         <property name="ageRating" type="int">
             <column name="AGERATING" />
         </property>

@@ -12,6 +12,7 @@ public class Movie implements Serializable{
 	private String genre;
 	private String Director;
 	private String synopsis;
+	private String actors;
 	private int ageRating;
 	private int rating;
 	private int ratingSum;
@@ -61,6 +62,12 @@ public class Movie implements Serializable{
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
 	}
+	public String getActors() {
+		return actors;
+	}
+	public void setActors(String actors) {
+		this.actors = actors;
+	}
 	public int getAgeRating() {
 		return ageRating;
 	}
@@ -97,7 +104,6 @@ public class Movie implements Serializable{
 	public void setNowShowing(int nowShowing) {
 		this.nowShowing = nowShowing;
 	}
-	
 
 	
 	//Ctrl+3 generate
