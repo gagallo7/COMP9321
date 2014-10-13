@@ -3,8 +3,6 @@ package edu.unsw.comp9321.util;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import javax.annotation.Resource;
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -47,7 +45,6 @@ public class MailSender {
 			session = (Session) envContext.lookup("mail/cs9321");
 			logger.info("Mailer Session obtained" + session.toString());
 			mailProps = session.getProperties();
-//			username = (String) mailProps.get("mail.smtp.user");
 			logger.info("User " + username);
 			logger.info("Pass " + password);
 			
