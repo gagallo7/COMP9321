@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.hibernate.Criteria;
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -193,7 +194,13 @@ public class HibernateMovieDAO implements MovieDAO {
 	}
 	
 	public UserLogin getUser(String username){
-		return (UserLogin) session.load(UserLogin.class, username);
+		UserLogin user = null;
+		//try{
+			user = (UserLogin) session.load(UserLogin.class, username);
+		//}catch (ObjectNotFoundException e){
+		//	user = null;
+		//}
+		return user;
 	}
 	
 	public boolean usernameExists (String username){
