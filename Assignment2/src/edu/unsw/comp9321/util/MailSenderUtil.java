@@ -11,9 +11,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 import edu.unsw.comp9321.exception.MailSenderException;
 import edu.unsw.comp9321.exception.ServiceLocatorException;

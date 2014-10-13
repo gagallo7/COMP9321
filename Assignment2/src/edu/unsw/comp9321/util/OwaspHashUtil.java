@@ -31,7 +31,6 @@ public class OwaspHashUtil {
    */
   public boolean authenticate(Connection con, String login, String password)
           throws SQLException, NoSuchAlgorithmException{
-      boolean authenticated=false;
       PreparedStatement ps = null;
       ResultSet rs = null;
       try {
