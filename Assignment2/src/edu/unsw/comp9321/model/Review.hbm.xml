@@ -1,41 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 11, 2014 11:40:12 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 13/10/2014 12:47:03 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="edu.unsw.comp9321.model.Review" table="REVIEW">
-		<id name="movieId" type="long">
-			<column name="MOVIEID" />
-			<generator class="assigned" />
-		</id>
-		<property name="username" type="java.lang.String">
-			<column name="USERNAME" />
-		</property>
-		<property name="text" type="java.lang.String">
-			<column name="TEXT" />
-		</property>
-		<property name="rating" type="int">
-			<column name="RATING" />
-		</property>
-	</class>
-	<class name="edu.unsw.comp9321.model.User">
-		<id name="id" column="username">
-			<generator class="native" />
-		</id>
-		<set name="movies" table="Review">
-			<key column="username" />
-			<many-to-many column="movieId" class="edu.unsw.comp9321.model.Movie" />
-		</set>
-	</class>
-
-	<class name="edu.unsw.comp9321.model.Movie">
-		<id name="id" column="movieId">
-			<generator class="native" />
-		</id>
-		<set name="users" inverse="true" table="Review">
-			<key column="movieId" />
-			<many-to-many column="username"
-				class="edu.unsw.comp9321.model.User" />
-		</set>
-	</class>
+    <class name="edu.unsw.comp9321.model.Review" table="REVIEW">
+        <id name="username" type="java.lang.String">
+            <column name="USERNAME" />
+            <generator class="assigned" />
+        </id>
+        <property name="movieId" type="long">
+            <column name="MOVIEID" />
+        </property> 
+        <property name="text" type="java.lang.String">
+            <column name="TEXT" />
+        </property>
+        <property name="rating" type="int">
+            <column name="RATING" />
+        </property>
+    </class>
 </hibernate-mapping>

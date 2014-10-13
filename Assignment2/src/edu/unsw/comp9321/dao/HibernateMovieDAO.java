@@ -16,6 +16,7 @@ import edu.unsw.comp9321.jdbc.HibernateSessionFactory;
 import edu.unsw.comp9321.model.Cinema;
 import edu.unsw.comp9321.model.CinemaSession;
 import edu.unsw.comp9321.model.Movie;
+import edu.unsw.comp9321.model.Review;
 import edu.unsw.comp9321.model.UserLogin;
 
 public class HibernateMovieDAO implements MovieDAO {
@@ -41,7 +42,11 @@ public class HibernateMovieDAO implements MovieDAO {
 		Criteria criteria = session.createCriteria(Movie.class);
 		criteria.add(Restrictions.eq("id",id));
 		movieList = criteria.list();
-		return movieList.get(0);
+		Movie movie = movieList.get(0);
+		if (!movie.getReleaseDate().after(Calendar.getInstance().getTime())){ //not after today
+			movie.setNowShowing(1);
+		}
+		return movie;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -99,7 +104,23 @@ public class HibernateMovieDAO implements MovieDAO {
 		}
 		return movieList;
 	}
-
+	
+	@Override
+	public void addReview(Review review){
+		session.beginTransaction();
+		session.save(review);
+		session.getTransaction().commit();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Review> getReviewList(Long movieID){
+		List<Review> reviewList = new ArrayList<Review>();
+		Criteria criteria = session.createCriteria(Review.class);
+		criteria.add(Restrictions.eq("movieId", movieID));
+		reviewList = criteria.list();
+		return reviewList;		
+	}
+	
 	@Override
 	public void addCinema(Cinema cinema) {
 		session.beginTransaction();

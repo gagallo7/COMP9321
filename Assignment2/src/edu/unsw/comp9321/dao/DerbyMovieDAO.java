@@ -15,6 +15,7 @@ import edu.unsw.comp9321.jdbc.DBConnectionFactory;
 import edu.unsw.comp9321.model.Cinema;
 import edu.unsw.comp9321.model.CinemaSession;
 import edu.unsw.comp9321.model.Movie;
+import edu.unsw.comp9321.model.Review;
 import edu.unsw.comp9321.model.UserLogin;
 
 public class DerbyMovieDAO implements MovieDAO {
@@ -126,6 +127,18 @@ public class DerbyMovieDAO implements MovieDAO {
 
 	@Override
 	public List<CinemaSession> getMovieSessions(Long movieID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addReview(Review review) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Review> getReviewList(Long movieID) {
 		// TODO Auto-generated method stub
 		return null;
 	}

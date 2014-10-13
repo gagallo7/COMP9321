@@ -3,7 +3,6 @@ package edu.unsw.comp9321.control;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,11 +24,11 @@ public class LoginCommand implements Command {
 				session.setAttribute("UserRole", "user");
 			}
 			session.setAttribute("username", username);
+			session.setAttribute("userId", 1);
+			session.setAttribute("nickname", "rahmorg");
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("control?action=toHomePage");
 		rd.forward(request, response);
-
 	}
-
 }

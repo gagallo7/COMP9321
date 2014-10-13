@@ -6,32 +6,36 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.unsw.comp9321.dao.HibernateMovieDAO;
 import edu.unsw.comp9321.dao.MovieDAO;
 import edu.unsw.comp9321.exception.ServiceLocatorException;
-import edu.unsw.comp9321.model.CinemaSession;
+import edu.unsw.comp9321.model.Review;
 
-public class DetailMovieCommand implements Command {
+public class ReviewMovieCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Long id = Long.parseLong(request.getParameter("id"));
+		HttpSession session = request.getSession();
+		
+		Review review = new Review();
+		Long movieID = Long.parseLong(request.getParameter("movieId"));
+		review.setUsername(session.getAttribute("username").toString());
+		review.setMovieId(movieID);
+		review.setText(request.getParameter("review"));
+		review.setRating(Integer.parseInt(request.getParameter("rating")));
 		
 		try {
 			MovieDAO dao = new HibernateMovieDAO();
-			request.setAttribute("movie", dao.getMovie(id));
-			//get comments
-			request.setAttribute("cinemas",  dao.getCinemaList());
-			request.setAttribute("sessions", dao.getMovieSessions(id));
-			request.setAttribute("reviews",  dao.getReviewList(id));
+			dao.addReview(review);
 			dao.closeSession();
 		} catch (ServiceLocatorException e) {
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("details.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("control?action=detailMovie&id="+movieID);
 		rd.forward(request, response);
 	}
 
