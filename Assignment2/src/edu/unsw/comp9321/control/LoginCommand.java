@@ -46,11 +46,34 @@ public class LoginCommand implements Command {
 						request.getSession().setAttribute("info", "Login");
 						request.getSession().setAttribute("moreInfo", "Invalid Username!");
 						nextPage = "fail.jsp";	
+					}else{
+						if(user.isConfirmed()){
+							byte[] bSalt = OwaspHashUtil.base64ToByte(user.getCode());
+							byte[] bDigest = OwaspHashUtil.getHash(
+									OwaspHashUtil.ITERATION_NUMBER, password, bSalt);
+							String possiblePassword = OwaspHashUtil.byteToBase64(bDigest);
+							logger.info("HASH" + possiblePassword);
+							
+							if (possiblePassword.equals(user.getPassword())){	
+								session.setAttribute("UserRole", "user");
+								session.setAttribute("username", username);
+								session.setAttribute("nickname", user.getNickname());
+							}else{
+								request.getSession().setAttribute("info", "Logn");
+								request.getSession().setAttribute("moreInfo", "Invalid Password!");
+								nextPage = "fail.jsp";						
+							}		
+						}else{
+							request.getSession().setAttribute("info", "Logn");
+							request.getSession().setAttribute("moreInfo", "Not confirmed user!");
+							nextPage = "fail.jsp";				
+						}
 					}
-					
 					
 					dao.closeSession();
 				} catch (ServiceLocatorException e) {
+					e.printStackTrace();
+				} catch (NoSuchAlgorithmException e) {
 					e.printStackTrace();
 				}	
 			}
@@ -59,36 +82,6 @@ public class LoginCommand implements Command {
 					
 					
 					
-				/*
-					
-	
-						
-					}else{
-						byte[] bSalt = OwaspHashUtil.base64ToByte(user.getCode());
-						byte[] bDigest = OwaspHashUtil.getHash(
-								OwaspHashUtil.ITERATION_NUMBER, password, bSalt);
-						String possiblePassword = OwaspHashUtil.byteToBase64(bDigest);
-						logger.info("HASH" + possiblePassword);
-						if (possiblePassword == user.getPassword()){	
-							session.setAttribute("UserRole", "user");
-							session.setAttribute("username", username);
-							session.setAttribute("nickname", user.getNickname());
-						}else{
-							request.getSession().setAttribute("info", "Logn");
-							request.getSession().setAttribute("moreInfo", "Invalid Password!");
-							nextPage = "fail.jsp";						
-						}
-					}
-					
-					dao.closeSession();	
-				} catch (ServiceLocatorException e) {
-					e.printStackTrace();
-				} catch (NoSuchAlgorithmException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		*/
 		
 		RequestDispatcher rd = request.getRequestDispatcher(nextPage);
 		rd.forward(request, response);

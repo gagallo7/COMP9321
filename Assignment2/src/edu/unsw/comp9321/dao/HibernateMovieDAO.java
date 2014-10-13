@@ -190,17 +190,17 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.beginTransaction();
 		session.update(user);
 		session.getTransaction().commit();
-		System.out.println("user " + user.getUsername());
 	}
 	
+	@SuppressWarnings("unchecked")
 	public UserLogin getUser(String username){
-		UserLogin user = null;
-		//try{
-			user = (UserLogin) session.load(UserLogin.class, username);
-		//}catch (ObjectNotFoundException e){
-		//	user = null;
-		//}
-		return user;
+		Criteria criteria = session.createCriteria(UserLogin.class);
+		criteria.add(Restrictions.eq("username", username));
+		List<UserLogin> userList = criteria.list();
+		if (userList.isEmpty())
+			return null;
+		else 		
+			return (UserLogin) criteria.list().get(0);
 	}
 	
 	public boolean usernameExists (String username){
