@@ -25,7 +25,7 @@ import edu.unsw.comp9321.dao.MovieDAO;
 import edu.unsw.comp9321.model.UserLogin;
 import edu.unsw.comp9321.util.MailSender;
 
-public class RegisterUserCommand implements Command {
+public class RegisterUserCommand2 implements Command {
 
 	private void handleMail(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
