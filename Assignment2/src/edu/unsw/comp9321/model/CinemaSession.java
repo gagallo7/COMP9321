@@ -8,9 +8,10 @@ public class CinemaSession implements Serializable {
 	
 	private long id;
 	private long movieId;
-	private long cinemaId;
+	//private long cinemaId;
 	private int availableSeats;
 	private Date showTime;
+	private Cinema cinema; //join
 	
 	public long getId() {
 		return id;
@@ -24,12 +25,6 @@ public class CinemaSession implements Serializable {
 	public void setMovieId(long movieId) {
 		this.movieId = movieId;
 	}
-	public long getCinemaId() {
-		return cinemaId;
-	}
-	public void setCinemaId(long cinemaId) {
-		this.cinemaId = cinemaId;
-	}
 	public int getAvailableSeats() {
 		return availableSeats;
 	}
@@ -42,6 +37,11 @@ public class CinemaSession implements Serializable {
 	public void setShowTime(Date showTime) {
 		this.showTime = showTime;
 	}
+	public Cinema getCinema() {
+		return cinema;
+	}
+	public void setCinema(Cinema cinema) {
+		this.cinema = cinema;
+	}
 	
-
 }

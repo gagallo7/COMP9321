@@ -23,10 +23,9 @@ public class AddCinemaSessionCommand implements Command {
 			throws ServletException, IOException {
 		CinemaSession cinemaSession = new CinemaSession();
 		
-		Long cinemaID = Long.parseLong(request.getParameter("movieId"));
-		Long movieID = Long.parseLong(request.getParameter("cinemaId"));
-		cinemaSession.setMovieId(cinemaID);
-		cinemaSession.setCinemaId(movieID);
+		Long cinemaID = Long.parseLong(request.getParameter("cinemaId"));
+		Long movieID = Long.parseLong(request.getParameter("movieId"));
+		cinemaSession.setMovieId(movieID);
 		
 		String showTime = request.getParameter("showTime");
 		String showDate = request.getParameter("showDate");
@@ -40,6 +39,7 @@ public class AddCinemaSessionCommand implements Command {
 			
 			MovieDAO dao = new HibernateMovieDAO();
 			Cinema cinema = dao.getCinema(cinemaID);
+			cinemaSession.setCinema(cinema);
 			cinemaSession.setAvailableSeats(cinema.getSeatingCapacity());
 			dao.addCinemaSession(cinemaSession);
 			dao.closeSession();

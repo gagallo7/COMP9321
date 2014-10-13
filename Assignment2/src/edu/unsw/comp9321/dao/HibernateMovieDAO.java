@@ -91,8 +91,12 @@ public class HibernateMovieDAO implements MovieDAO {
 			else if (!genre.isEmpty())
 				criteria.add(Restrictions.ilike("genre", genre, MatchMode.ANYWHERE));	
 		}		
-		
 		movieList = criteria.list();
+		for (Movie m: movieList){
+			if (!m.getReleaseDate().after(Calendar.getInstance().getTime())){ //not after today
+				m.setNowShowing(1);
+			}
+		}
 		return movieList;
 	}
 

@@ -15,6 +15,7 @@ public class Movie implements Serializable{
 	private int ageRating;
 	private int rating;
 	private Date releaseDate;
+	private int nowShowing; //without mapping cause it changes day by day
 	
 	public long getId() {
 		return id;
@@ -69,6 +70,12 @@ public class Movie implements Serializable{
 	}
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
+	}
+	public int getNowShowing() {
+		return nowShowing;
+	}
+	public void setNowShowing(int nowShowing) {
+		this.nowShowing = nowShowing;
 	}
 	
 

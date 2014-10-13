@@ -16,7 +16,8 @@
 		<h2>Associate this movie with a cinema</h2>
 		<form action="control" method="post">
 			<p>
-				Which cinema? <select name="cinemaId">
+				Which cinema? 
+				<select name="cinemaId">
 					<c:forEach var="cinema" items="${cinemas}">
 						<option value="${cinema.id}">${cinema.location}</option>
 					</c:forEach>
@@ -65,7 +66,7 @@
 			<table>
 				<c:forEach var="session" items="${sessions}">
 					<tr>
-						<td>Cinema Location</td><td>${session.showTime}</td>
+						<td>${session.cinema.location}</td><td>${session.showTime}</td>
 					</tr>
 				</c:forEach>
 			</table>
