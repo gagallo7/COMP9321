@@ -69,7 +69,7 @@
 	<!-- ------------IF THE MOVIE HAVE BEEN RELEASED--------------------------- -->
 	<c:if test="${movie.nowShowing eq 1}">
 	<!-------------------------SESSIONs---------------------------------------- -->
-		<form action="control" name="booking" method="post">
+		<form action="control" onchange="x.value=numtickets.value*12;" name="booking" method="post">
 			<table>
 				<caption>Sessions - Showtimes and Cinemas</caption>
 				<thead>
@@ -91,6 +91,12 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<c:if test="${UserRole eq 'user'}">
+				<p>Number of tickets: 
+					<input type="number" name="numTickets" min=1 max=20 width="2" required="required">
+	            	( AUD$ <output id="x"></output> ) 
+	        	</p>
+        	</c:if>
 			<input type="hidden" name="action" value="bookSession"/>
 			<input type="submit" value="Book!">
 		</form>

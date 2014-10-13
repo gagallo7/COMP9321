@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="edu.unsw.comp9321.model.*"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,16 +13,12 @@
 	<%@ include file="header.html"%>
 
 	<h2>Booking details</h2>
-	<strong>Movie: </strong> Butterfly Effect
-	<br><strong>Cinema: </strong> FirstCinSin
-	<br><strong>Showtime: </strong> 15/10/2014
+	<strong>Movie: </strong> ${cinemaSession.movieId}
+	<br><strong>Cinema: </strong> ${cinemaSession.cinema.location}
+	<br><strong>Showtime: </strong> ${cinemaSession.showTime }
 	
 	<h3>Payment Details</h3>
-	<form action="test" onchange="x.value=t.value*12;" name="payment" method="post">
-	    <p>
-            Number of tickets: <input  name="t" type="number" min=1 max=20 width="2" name="tickets" required="required">
-            ( AUD$ <output id="x"></output> ) 
-        </p>
+	<form action="control" onchange="x.value=t.value*12;" name="payment" method="post">
 		<p>
 			Credit Card Number: <input type="text" pattern="[0-9]*" name="cardNo" required="required"> 
 		</p>
