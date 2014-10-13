@@ -12,6 +12,7 @@
 <body>
 	<%@ include file="header.html"%>
 
+	<!-- -------------------OWNER ADD SHOWTIME AND CINEMAS------------------- -->
 	<c:if test="${UserRole eq 'manager'}">
 		<h2>Associate this movie with a cinema</h2>
 		<form action="control" method="post">
@@ -37,9 +38,10 @@
 				<input type="submit" value="Create Session">
 			</p>
 		</form>
-
 	</c:if>
-
+	<!-- ---------------------------------------------------------------------- -->
+	
+	<!-- --------------------------MOVIE DETAILS------------------------------- -->
 	<h2>${movie.title}</h2>
 	<img class="large" alt="poster" src="img/${movie.urlPost}">
 	<div class="rating">
@@ -60,38 +62,41 @@
 		<p>
 			<strong>Synopsis:</strong> ${movie.synopsis}
 		</p>
-		<p>
-			<strong>Sessions:</strong> 
-		</p>
-			<table>
-				<c:forEach var="session" items="${sessions}">
-					<tr>
-						<td>${session.cinema.location}</td><td>${session.showTime}</td>
-					</tr>
-				</c:forEach>
-			</table>
 	</div>
-
-	<c:if test="${UserRole eq 'user'}">
-		<h1>If the movie has been released.</h1>
-
-		<form action="test" name="booking">
+	<!-- ---------------------------------------------------------------------- -->
+	
+	
+	<!-- ------------IF THE MOVIE HAVE BEEN RELEASED--------------------------- -->
+	<c:if test="${movie.nowShowing eq 1}">
+	<!-------------------------SESSIONs---------------------------------------- -->
+		<form action="control" name="booking" method="post">
 			<table>
-				<caption>Showtimes</caption>
+				<caption>Sessions - Showtimes and Cinemas</caption>
 				<thead>
 					<tr>
 						<th>Cinema</th>
 						<th>Showtime</th>
-						<th>Choose</th>
+						<c:if test="${UserRole eq 'user'}">
+							<th>Choose</th>
+						</c:if>
 					</tr>
 				</thead>
+				<c:forEach var="session" items="${sessions}">
+					<tr>
+						<td>${session.cinema.location}</td>
+						<td>${session.showTime}</td>
+						<c:if test="${UserRole eq 'user'}">
+							<td><input type="radio" name="sessionId" value="${session.id}"></td>
+						</c:if>
+					</tr>
+				</c:forEach>
 			</table>
 			<input type="submit" value="Book!">
 		</form>
-
-		<br />
-		<br />
-		<br />
+		<br /><br /><br />
+	<!-- ---------------------------------------------------------------------- -->
+	
+	<!-- -----------------------------REVIEWS---------------------------------- -->	
 		<table>
 			<caption>Reviews</caption>
 			<thead>
@@ -100,18 +105,30 @@
 					<th>Nickname</th>
 					<th>Review</th>
 				</tr>
+				<c:forEach var="review" items="${reviews}">
+					<tr>
+						<td>${review.rating}</td>
+						<td>${review.username}</td>
+						<td>${review.text}</td>
+					</tr>
+				</c:forEach>
 			</thead>
 		</table>
-		<form action="test">
+		
+		<form action="control" method="post">
 			<p>Review this movie:</p>
 			<textarea rows="10" cols="50" name="review"></textarea>
 			<br /> Your rating:
-			<div class="rating">☆☆☆☆☆</div>
+			<div class="rating">☆☆☆☆☆
+				<input type="number" name="rating" min=1 max=5 required="required">
+			</div>
 			<p>
-				<input type="submit" value="Send Review">
+				<input type="hidden" name="movieId" value="${movie.id}"/> 
+				<input type="hidden" name="action" value="reviewMovie"/>
+				<input type="submit" value="Send Review"/>
 			</p>
 		</form>
-
+	<!-- ---------------------------------------------------------------------- -->
 	</c:if>
 </body>
 </html>

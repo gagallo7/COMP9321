@@ -25,7 +25,11 @@ public class MailSender {
 	static Logger logger = Logger.getLogger(MailSender.class.getName());
 	static MailSender sender;
 
+	// Get Session class from the tomcat lib folder
 	private static Session session;
+	private Properties mailProps;
+	final String username = "popcorn.troll@yahoo.com";
+	final String password = "123Admin";
 
 	private InitialContext ctx;
 
@@ -42,30 +46,29 @@ public class MailSender {
 			Context envContext = (Context) ctx.lookup("java:comp/env");
 			session = (Session) envContext.lookup("mail/cs9321");
 			logger.info("Mailer Session obtained" + session.toString());
-			Properties mailProps = session.getProperties();
-			String username = (String) mailProps.get("mail.smtp.user");
-			logger.info(username);
-			String password = (String) mailProps.get("password");
-			logger.info(password);
+			mailProps = session.getProperties();
+//			username = (String) mailProps.get("mail.smtp.user");
+			logger.info("User " + username);
+			logger.info("Pass " + password);
+			
+			logger.info("auth " + (String) mailProps.get("mail.smtp.auth"));
+			logger.info("ttls " + (String) mailProps.get("mail.smtp.starttls.enable"));
+			logger.info("host " + (String) mailProps.get("mail.smtp.host"));
+			logger.info("port " + (String) mailProps.get("mail.smtp.port"));
+			System.out.println("Getting instance");
+			session = Session.getInstance(mailProps,
+			  new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(username, password);
+				}
+			  });
+			
 		} catch (NamingException e) {
 			logger.severe("Cannot find context, throwing exception"
 					+ e.getMessage());
 			e.printStackTrace();
 			throw new ServiceLocatorException();
 		}
-	}
-
-	/**
-	 * This function stores a username/password combination into the mail
-	 * session. The authentication is only performed when a mail is sent.
-	 */
-	public void setAuthData(final Properties mailProperties,
-			final String username, final String password) {
-		session = Session.getInstance(mailProperties, new Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username, password);
-			}
-		});
 	}
 
 	/**
@@ -85,11 +88,12 @@ public class MailSender {
 	 * @throws AddressException
 	 * @throws MessagingException
 	 */
-	public void sendMessage(String fromAddress, String toAddress,
+	public void sendMessage(String toAddress,
 			String mailSubject, StringBuffer text) throws AddressException,
 			MessagingException {
+		
 		Message message = new MimeMessage(session);
-		message.setFrom(new InternetAddress(fromAddress));
+		message.setFrom(new InternetAddress(username));
 		message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(toAddress));
 		message.setSubject(mailSubject);

@@ -16,7 +16,7 @@
 	<h1>Registration</h1>
 	
 	<strong id="info"></strong>
-	<form action="control" name="reg" method="post"
+	<form action="control" method="post"
 		onsubmit="return validate();">
 		<p>
 			Username: <input type="text" name="username"> <output style="position: absolute; color: gray;">4 or more characters</output>

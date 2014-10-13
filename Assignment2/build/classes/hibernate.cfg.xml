@@ -20,5 +20,6 @@
   <mapping resource="edu/unsw/comp9321/model/Cinema.hbm.xml"/>
   <mapping resource="edu/unsw/comp9321/model/UserLogin.hbm.xml"/>
   <mapping resource="edu/unsw/comp9321/model/CinemaSession.hbm.xml"/>
+  <mapping resource="edu/unsw/comp9321/model/Review.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>
