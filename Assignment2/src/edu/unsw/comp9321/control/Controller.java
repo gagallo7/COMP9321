@@ -18,7 +18,6 @@ import org.jboss.logging.Logger;
 @WebServlet({ "/Controller", "/control" })
 @MultipartConfig// expects requests to made using the multipart/form-data - read file-image
 public class Controller extends HttpServlet {
-	private HttpServletRequest bak = null;
 	private static final long serialVersionUID = 1L;
     static Logger logger = Logger.getLogger(Controller.class.getName());
     
@@ -35,7 +34,7 @@ public class Controller extends HttpServlet {
     	commands.put(Actions.toHomePage, 	new ToHomePageCommand());
     	commands.put(Actions.toPage, 		new ToPageCommand());
     	commands.put(Actions.login, 		new LoginCommand());
-    	commands.put(Actions.registerUser, 	new RegisterUserCommand());
+    	commands.put(Actions.registerUser, 	new RegisterUserCommand2());
     	commands.put(Actions.confirmUser, 	new ConfirmUserCommand());
     	commands.put(Actions.searchMovie, 	new SearchMovieCommand());
     	commands.put(Actions.addCinema, 	new AddCinemaCommand());
@@ -46,7 +45,6 @@ public class Controller extends HttpServlet {
 	}
 
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	bak = request;
     	String actionParameter = request.getParameter("action"); 
     	Actions action;
     	RequestDispatcher rd;
@@ -60,7 +58,7 @@ public class Controller extends HttpServlet {
     		response.sendError(404);
     	}else{
 	    	Command command = commands.get(action);
-		    command.execute(bak, response);	
+		    command.execute(request, response);	
     	}
     }
 
