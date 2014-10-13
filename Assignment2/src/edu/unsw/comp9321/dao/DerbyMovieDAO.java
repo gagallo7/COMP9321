@@ -143,6 +143,18 @@ public class DerbyMovieDAO implements MovieDAO {
 		return null;
 	}
 
+	@Override
+	public boolean isSessionAvailable(Long cinemaSessionID, int numTickets) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public CinemaSession getCinemaSession(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 }
