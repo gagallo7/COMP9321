@@ -10,7 +10,15 @@ public class UserLogin implements Serializable{
 	private String lastName;
 	private String nickname;
 	private String email;
-	private String password; 
+	private String password;
+	private String code;
+	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	private int confirmed;
 	
 	public String getUsername() {

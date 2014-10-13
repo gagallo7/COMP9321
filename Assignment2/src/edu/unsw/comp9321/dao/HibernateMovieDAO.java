@@ -189,4 +189,17 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.close();
 	}
 
+	public void addUserLogin (UserLogin ul)
+	{
+		session.beginTransaction();
+		session.save(ul);
+		session.getTransaction().commit();
+	}
+	
+	public boolean usernameExists (String username)
+	{
+		Criteria criteria = session.createCriteria(UserLogin.class);
+		criteria.add(Restrictions.eq("username", username));
+		return (!criteria.list().isEmpty());
+	}
 }
