@@ -181,14 +181,23 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.getTransaction().commit();
 	}
 	
-	public void confirmUser(String code){
+	public void updateUser (UserLogin user){
+		session.beginTransaction();
+		session.update(user);
+		session.getTransaction().commit();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public UserLogin confirmUser(String code){
 		Criteria criteria = session.createCriteria(UserLogin.class);
 		criteria.add(Restrictions.eq("code", code));
-		UserLogin user = (UserLogin) criteria.list().get(0);
+		List<UserLogin> userList = criteria.list();
+		UserLogin user = userList.get(0);
 		user.setConfirmed(true);
 		session.beginTransaction();
 		session.update(user);
 		session.getTransaction().commit();
+		return user;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -199,7 +208,7 @@ public class HibernateMovieDAO implements MovieDAO {
 		if (userList.isEmpty())
 			return null;
 		else 		
-			return (UserLogin) criteria.list().get(0);
+			return (UserLogin) userList.get(0);
 	}
 	
 	public boolean usernameExists (String username){

@@ -30,7 +30,8 @@ public interface MovieDAO {
 	
 	public void registerUser(UserLogin user);
 	public void addUserLogin (UserLogin ul);
-	public void confirmUser(String code);
+	public void updateUser (UserLogin user);
+	public UserLogin confirmUser(String code);
 	public UserLogin getUser(String username);
 	public boolean usernameExists (String username);
 	

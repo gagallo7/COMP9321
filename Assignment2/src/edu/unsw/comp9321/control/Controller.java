@@ -22,7 +22,7 @@ public class Controller extends HttpServlet {
     static Logger logger = Logger.getLogger(Controller.class.getName());
     
     private HashMap<Actions, Command> commands;
-    private enum Actions {toHomePage, toPage, login, registerUser, confirmUser, addCinema, addCinemaSession, addMovie, addShowtime,  searchMovie, detailMovie, reviewMovie, bookSession};
+    private enum Actions {toHomePage, toPage, toProfile, login, registerUser, confirmUser, editProfile, addCinema, addCinemaSession, addMovie, addShowtime,  searchMovie, detailMovie, reviewMovie, bookSession};
     
     public Controller() {
         super();   
@@ -33,9 +33,11 @@ public class Controller extends HttpServlet {
     	commands = new HashMap<Actions, Command>();
     	commands.put(Actions.toHomePage, 	new ToHomePageCommand());
     	commands.put(Actions.toPage, 		new ToPageCommand());
+    	commands.put(Actions.toProfile, 	new ToProfileCommand());
     	commands.put(Actions.login, 		new LoginCommand());
     	commands.put(Actions.registerUser, 	new RegisterUserCommand());
     	commands.put(Actions.confirmUser, 	new ConfirmUserCommand());
+    	commands.put(Actions.editProfile,   new EditProfileCommand());
     	commands.put(Actions.addCinema, 	new AddCinemaCommand());
     	commands.put(Actions.addCinemaSession, new AddCinemaSessionCommand());
     	commands.put(Actions.addMovie, 		new AddMovieCommand());

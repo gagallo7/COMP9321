@@ -29,6 +29,7 @@
 
 		<c:if test="${UserRole eq 'user'}">
 			<li><a href="?action=toPage&page=booking">Bookings</a></li>
+			<li><a href="?action=toProfile">Profile</a></li>
 		</c:if>
 
 		<c:if test="${UserRole eq 'manager'}">
