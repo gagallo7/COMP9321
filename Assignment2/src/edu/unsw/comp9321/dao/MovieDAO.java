@@ -1,5 +1,6 @@
 package edu.unsw.comp9321.dao;
 
+import edu.unsw.comp9321.model.Booking;
 import edu.unsw.comp9321.model.Cinema;
 import edu.unsw.comp9321.model.CinemaSession;
 import edu.unsw.comp9321.model.Movie;
@@ -34,6 +35,8 @@ public interface MovieDAO {
 	public UserLogin confirmUser(String code);
 	public UserLogin getUser(String username);
 	public boolean usernameExists (String username);
+	
+	public List<Booking> getBookings(String username);
 	
 	public void closeSession();
 }

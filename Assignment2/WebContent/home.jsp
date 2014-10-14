@@ -28,8 +28,8 @@
 		<li><a href="search.jsp">Search</a></li>
 
 		<c:if test="${UserRole eq 'user'}">
-			<li><a href="?action=toPage&page=booking">Bookings</a></li>
-			<li><a href="?action=toProfile">Profile</a></li>
+			<li><a href="?action=detailBookings">Bookings</a></li>
+			<li><a href="?action=detailProfile">Profile</a></li>
 		</c:if>
 
 		<c:if test="${UserRole eq 'manager'}">

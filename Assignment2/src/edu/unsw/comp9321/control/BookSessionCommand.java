@@ -26,6 +26,11 @@ public class BookSessionCommand implements Command {
 				request.setAttribute("cinemaSession", dao.getCinemaSession(cinemaSessionID));
 				RequestDispatcher rd = request.getRequestDispatcher("checkout.jsp");
 				rd.forward(request, response);
+			}else{
+				request.getSession().setAttribute("info", "Book Movie Session");
+				request.getSession().setAttribute("moreInfo", "There are not suficient available spots in the selected Session!");
+				RequestDispatcher rd = request.getRequestDispatcher("fail.jsp");
+				rd.forward(request, response);
 			}
 		} catch (ServiceLocatorException e) {
 			e.printStackTrace();

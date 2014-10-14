@@ -22,7 +22,7 @@ public class Controller extends HttpServlet {
     static Logger logger = Logger.getLogger(Controller.class.getName());
     
     private HashMap<Actions, Command> commands;
-    private enum Actions {toHomePage, toPage, toProfile, login, registerUser, confirmUser, editProfile, addCinema, addCinemaSession, addMovie, addShowtime,  searchMovie, detailMovie, reviewMovie, bookSession};
+    private enum Actions {toHomePage, toPage, detailProfile, login, registerUser, confirmUser, editProfile, addCinema, addCinemaSession, addMovie, addShowtime,  searchMovie, detailMovie, reviewMovie, bookSession, detailBookings};
     
     public Controller() {
         super();   
@@ -33,7 +33,7 @@ public class Controller extends HttpServlet {
     	commands = new HashMap<Actions, Command>();
     	commands.put(Actions.toHomePage, 	new ToHomePageCommand());
     	commands.put(Actions.toPage, 		new ToPageCommand());
-    	commands.put(Actions.toProfile, 	new ToProfileCommand());
+    	commands.put(Actions.detailProfile, new DetailProfileCommand());
     	commands.put(Actions.login, 		new LoginCommand());
     	commands.put(Actions.registerUser, 	new RegisterUserCommand());
     	commands.put(Actions.confirmUser, 	new ConfirmUserCommand());
@@ -46,6 +46,7 @@ public class Controller extends HttpServlet {
     	commands.put(Actions.detailMovie, 	new DetailMovieCommand());
     	commands.put(Actions.reviewMovie, 	new ReviewMovieCommand());
     	commands.put(Actions.bookSession, 	new BookSessionCommand());
+    	commands.put(Actions.detailBookings,new DetailBookingsCommand());
 	}
 
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

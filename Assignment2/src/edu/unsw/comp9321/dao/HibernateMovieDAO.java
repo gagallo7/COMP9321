@@ -13,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 
 import edu.unsw.comp9321.exception.ServiceLocatorException;
 import edu.unsw.comp9321.jdbc.HibernateSessionFactory;
+import edu.unsw.comp9321.model.Booking;
 import edu.unsw.comp9321.model.Cinema;
 import edu.unsw.comp9321.model.CinemaSession;
 import edu.unsw.comp9321.model.Movie;
@@ -217,9 +218,18 @@ public class HibernateMovieDAO implements MovieDAO {
 		return (!criteria.list().isEmpty());
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Booking> getBookings(String username) {
+		Criteria criteria = session.createCriteria(Booking.class);
+		criteria.add(Restrictions.eq("username", username));
+		return criteria.list();
+	}
+	
 	public void closeSession(){
 		session.close();
 	}
+
 
 
 }
