@@ -25,6 +25,7 @@ public interface MovieDAO {
 	public List<Cinema> getCinemaList();
 	
 	public void addCinemaSession(CinemaSession cinemaSession);
+	public void updateCinemaSession(CinemaSession cinemaSession);
 	public CinemaSession getCinemaSession(Long id);
 	public List<CinemaSession> getMovieSessions(Long movieID);
 	public boolean isSessionAvailable(Long cinemaSessionID, int numTickets);
@@ -36,6 +37,7 @@ public interface MovieDAO {
 	public UserLogin getUser(String username);
 	public boolean usernameExists (String username);
 	
+	public void addBooking(Booking booking);
 	public List<Booking> getBookings(String username);
 	
 	public void closeSession();

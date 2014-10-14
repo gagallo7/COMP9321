@@ -139,9 +139,9 @@
 						required="required">
 				</div>
 				<p>
-					<input type="hidden" name="movieId" value="${movie.id}" /> <input
-						type="hidden" name="action" value="reviewMovie" /> <input
-						type="submit" value="Send Review" />
+					<input type="hidden" name="movieId" value="${movie.id}" /> 
+					<input type="hidden" name="action" value="reviewMovie" /> 
+					<input type="submit" value="Send Review" />
 				</p>
 			</form>
 		</c:if>

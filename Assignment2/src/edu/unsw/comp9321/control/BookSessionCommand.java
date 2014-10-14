@@ -24,6 +24,7 @@ public class BookSessionCommand implements Command {
 			dao = new HibernateMovieDAO();
 			if (dao.isSessionAvailable(cinemaSessionID, numTickets)){
 				request.setAttribute("cinemaSession", dao.getCinemaSession(cinemaSessionID));
+				request.setAttribute("numTickets", numTickets);
 				RequestDispatcher rd = request.getRequestDispatcher("checkout.jsp");
 				rd.forward(request, response);
 			}else{

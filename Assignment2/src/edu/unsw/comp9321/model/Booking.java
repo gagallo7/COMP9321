@@ -11,13 +11,9 @@ public class Booking implements Serializable{
 	
 	private long id;
 	private String username;
-	private boolean confirmed;
 	private int numberOfTickets;
 	private CinemaSession cinemaSession;
 	
-	public Booking(){
-		confirmed = false;
-	}
 	
 	public long getId() {
 		return id;
@@ -30,12 +26,6 @@ public class Booking implements Serializable{
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public boolean isConfirmed() {
-		return confirmed;
-	}
-	public void setConfirmed(boolean confirmed) {
-		this.confirmed = confirmed;
 	}
 	public int getNumberOfTickets() {
 		return numberOfTickets;

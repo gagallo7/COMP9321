@@ -26,6 +26,9 @@
 			CVV Number: <input type="text" pattern="[0-9]{3}" name="cardNo" required="required">
 		</p>
 		<p>
+			<input type="hidden" name="cinemaSessionID" value="${cinemaSession.id}" /> 
+			<input type="hidden" name="numTickets" value="${numTickets}" /> 
+			<input type="hidden" name="action" value="checkoutBooking" /> 
 			<input type="submit" value="Checkout">
 		</p>
 	</form>

@@ -22,7 +22,7 @@ public class Controller extends HttpServlet {
     static Logger logger = Logger.getLogger(Controller.class.getName());
     
     private HashMap<Actions, Command> commands;
-    private enum Actions {toHomePage, toPage, detailProfile, login, registerUser, confirmUser, editProfile, addCinema, addCinemaSession, addMovie, addShowtime,  searchMovie, detailMovie, reviewMovie, bookSession, detailBookings};
+    private enum Actions {toHomePage, toPage, detailProfile, login, registerUser, confirmUser, editProfile, addCinema, addCinemaSession, addMovie, addShowtime,  searchMovie, detailMovie, reviewMovie, bookSession, checkoutBooking, detailBookings};
     
     public Controller() {
         super();   
@@ -47,6 +47,7 @@ public class Controller extends HttpServlet {
     	commands.put(Actions.reviewMovie, 	new ReviewMovieCommand());
     	commands.put(Actions.bookSession, 	new BookSessionCommand());
     	commands.put(Actions.detailBookings,new DetailBookingsCommand());
+    	commands.put(Actions.checkoutBooking, new CheckoutBookingCommand());
 	}
 
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -150,6 +150,12 @@ public class HibernateMovieDAO implements MovieDAO {
 		session.getTransaction().commit();
 	}
 	
+	public void updateCinemaSession(CinemaSession cinemaSession){
+		session.beginTransaction();
+		session.update(cinemaSession);
+		session.getTransaction().commit();
+	}
+	
 	@Override
 	public CinemaSession getCinemaSession(Long id){
 		return (CinemaSession) session.load(CinemaSession.class, id);
@@ -216,6 +222,12 @@ public class HibernateMovieDAO implements MovieDAO {
 		Criteria criteria = session.createCriteria(UserLogin.class);
 		criteria.add(Restrictions.eq("username", username));
 		return (!criteria.list().isEmpty());
+	}
+	
+	public void addBooking(Booking booking){
+		session.beginTransaction();
+		session.save(booking);
+		session.getTransaction().commit();		
 	}
 	
 	@SuppressWarnings("unchecked")
