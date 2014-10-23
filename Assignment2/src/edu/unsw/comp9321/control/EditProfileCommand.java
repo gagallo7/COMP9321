@@ -20,7 +20,7 @@ public class EditProfileCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+		request.getSession().setAttribute("info", "Edit profile ");
 		String nickname = SaferStringUtil.convert(request.getParameter("nickname"));
 		String firstName = SaferStringUtil.convert(request.getParameter("firstName"));
 		String lastName = SaferStringUtil.convert(request.getParameter("lastName"));
@@ -45,7 +45,9 @@ public class EditProfileCommand implements Command {
 			e.printStackTrace();
 		}
 	
-	RequestDispatcher rd = request.getRequestDispatcher("control?action=toProfile");
+//	RequestDispatcher rd = request.getRequestDispatcher("control?action=detailProfile");
+		
+	RequestDispatcher rd = request.getRequestDispatcher("success.jsp");
 	rd.forward(request, response);
 	
 	

@@ -19,6 +19,7 @@ public class ToPageCommand implements Command {
 		Set <String> userOnlyPages = new HashSet < String > ();
 		Set <String> managerOnlyPages = new HashSet < String > ();
 		userOnlyPages.add ("booking");
+		userOnlyPages.add ("profile");
 		managerOnlyPages.add("cinemas");
 		managerOnlyPages.addAll(userOnlyPages);
 		

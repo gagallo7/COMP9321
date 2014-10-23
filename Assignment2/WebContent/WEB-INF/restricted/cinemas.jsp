@@ -60,8 +60,7 @@
 	<form action="control" method="post" enctype="multipart/form-data">
 		<!-- multipart/form-dat to be able to manipulate the image  -->
 		<p>
-			Poster: <input type="file" name="poster" required="required">
-			<!--            accept="image/png,image/jpg" -->
+			Poster: <input type="file" name="poster" accept="image/*" required="required">
 		</p>
 		<p>
 			Title: <input type="text" name="title" required="required">

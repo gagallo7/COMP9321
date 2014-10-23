@@ -15,7 +15,7 @@
 
 	<c:if test="${UserRole eq 'user'}">
 		<div id="greetings">Hello ${username}, prepare your popcorn, but
-			don't feed the troll!</div>
+			don't feed the troll!<br>Your session will expire after 5 minutes of inactivity.</div>
 	</c:if>
 	
 	<c:if test="${UserRole eq 'manager'}">
@@ -28,11 +28,13 @@
 		<li><a href="search.jsp">Search</a></li>
 
 		<c:if test="${UserRole eq 'user'}">
+			<li><a href="?action=logout">Logout</a></li>
 			<li><a href="?action=detailBookings">Bookings</a></li>
 			<li><a href="?action=detailProfile">Profile</a></li>
 		</c:if>
 
 		<c:if test="${UserRole eq 'manager'}">
+			<li><a href="?action=logout">Logout</a></li>
 			<li><a href="?action=toPage&page=cinemas">Cinemas and Movies</a></li>
 		</c:if>
 	</ul>

@@ -42,7 +42,7 @@
 </script>
 </head>
 <body>
-	<%@ include file="header.html"%>
+	<%@ include file="/header.html"%>
 	<strong id="info"></strong>
 	<h3>
 		Editing profile of Username:
@@ -62,16 +62,16 @@
         <p>
             Last Name: <input type="text" name="lastName" value="${user.lastName }">
         </p>
-		<p>
-			Password: <input type="password" name="password" id="p">
-			<output id="x" style="position: absolute; color: gray;">4 or
-				more characters</output>
-		</p>
-		<p>
-			Repeat Password: <input onblur="x.value=checkPass(p,rp);"
-				type="password" id="rp">
-			<output id="x" style="position: absolute; color: red;"></output>
-		</p>
+<!-- 		<p> -->
+<!-- 			Password: <input type="password" name="password" id="p"> -->
+<!-- 			<output id="x" style="position: absolute; color: gray;">4 or -->
+<!-- 				more characters</output> -->
+<!-- 		</p> -->
+<!-- 		<p> -->
+<!-- 			Repeat Password: <input onblur="x.value=checkPass(p,rp);" -->
+<!-- 				type="password" id="rp"> -->
+<!-- 			<output id="x" style="position: absolute; color: red;"></output> -->
+<!-- 		</p> -->
 		<p>
 			E-mail: <input type="email" name="email" value="${user.email }">
 		</p>

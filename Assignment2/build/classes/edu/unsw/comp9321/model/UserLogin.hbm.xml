@@ -1,40 +1,33 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 11, 2014 11:04:38 PM by Hibernate Tools 3.4.0.CR1 -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14/10/2014 00:50:22 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="edu.unsw.comp9321.model.UserLogin" table="USERLOGIN">
-		<id name="username" type="java.lang.String">
-			<column name="USERNAME" not-null="true" unique="true" />
-			<generator class="assigned" />
-		</id>
-		<property generated="never" lazy="false" name="firstName"
-			type="java.lang.String">
-			<column name="FIRSTNAME" />
-		</property>
-		<property generated="never" lazy="false" name="code"
-			type="java.lang.String">
-			<column name="CODE" />
-		</property>
-		<property generated="never" lazy="false" name="lastName"
-			type="java.lang.String">
-			<column name="LASTNAME" />
-		</property>
-		<property generated="never" lazy="false" name="nickname"
-			type="java.lang.String">
-			<column name="NICKNAME" />
-		</property>
-		<property generated="never" lazy="false" name="email"
-			type="java.lang.String">
-			<column name="EMAIL" />
-		</property>
-		<property generated="never" lazy="false" name="password"
-			type="java.lang.String">
-			<column name="PASSWORD" />
-		</property>
-		<property name="confirmed" type="int">
-			<column name="CONFIRMED" />
-		</property>
-	</class>
+    <class name="edu.unsw.comp9321.model.UserLogin" table="USERLOGIN">
+        <id name="username" type="java.lang.String">
+            <column name="USERNAME" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="nickname" type="java.lang.String">
+            <column name="NICKNAME" />
+        </property>
+        <property name="firstName" type="java.lang.String">
+            <column name="FIRSTNAME" />
+        </property>
+        <property name="lastName" type="java.lang.String">
+            <column name="LASTNAME" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="code" type="java.lang.String">
+            <column name="CODE" />
+        </property>
+        <property name="confirmed" type="boolean">
+            <column name="CONFIRMED" />
+        </property>
+    </class>
 </hibernate-mapping>
-

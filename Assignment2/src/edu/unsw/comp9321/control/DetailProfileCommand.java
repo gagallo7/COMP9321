@@ -28,7 +28,7 @@ public class DetailProfileCommand implements Command {
 			e.printStackTrace();
 		}
 	
-	RequestDispatcher rd = request.getRequestDispatcher("profile.jsp");
+	RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/restricted/profile.jsp");
 	rd.forward(request, response);
 
 	}
